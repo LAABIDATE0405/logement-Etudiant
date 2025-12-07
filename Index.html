@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>logement-Etudiant</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <img src="images/logo.png" alt="Logo" class="logo">
+  <h1 id="title">logement-Etudiant</h1>
+  <div class="controls">
+    <label for="role">Vous êtes:</label>
+    <select id="role">
+      <option value="student">Étudiant</option>
+      <option value="owner">Propriétaire</option>
+    </select>
+
+    <label for="lang">Langue:</label>
+    <select id="lang">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+    </select>
+  </div>
+</header>
+
+<main>
+  <!-- Étudiant -->
+  <section id="studentSection">
+    <h2>Logements disponibles</h2>
+    <form id="studentForm">
+      <input type="text" placeholder="Ville" name="ville">
+      <input type="number" placeholder="Budget" name="budget">
+      <button type="submit">Chercher</button>
+    </form>
+    <ul id="studentList"></ul>
+  </section>
+
+  <!-- Propriétaire -->
+  <section id="ownerSection">
+    <h2>Ajouter un logement</h2>
+    <form id="ownerForm">
+      <input type="text" placeholder="Adresse" name="adresse">
+      <input type="number" placeholder="Prix (DH)" name="prix">
+      <input type="number" placeholder="Nombre de chambres" name="chambres">
+      <input type="file" name="image">
+      <button type="submit">Publier</button>
+    </form>
+    <ul id="ownerList"></ul>
+  </section>
+</main>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
