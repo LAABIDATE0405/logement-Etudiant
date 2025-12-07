@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme Logements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 id="title">Plateforme de Logements</h1>
+
+    <div class="controls">
+        <select id="languageSelect">
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
+
+        <select id="userTypeSelect">
+            <option value="student">Étudiant / Student / طالب</option>
+            <option value="owner">Propriétaire / Owner / مالك</option>
+        </select>
+    </div>
+</header>
+
+<main>
+
+    <!-- Owner Form -->
+    <section id="formSection" class="box hidden">
+        <h2 id="formTitle">Ajouter un Logement</h2>
+
+        <form id="logementForm">
+            <label id="labelTitre">Titre :</label>
+            <input type="text" id="titre">
+
+            <label id="labelAdresse">Adresse :</label>
+            <input type="text" id="adresse">
+
+            <label id="labelPrix">Prix / mois :</label>
+            <input type="number" id="prix">
+
+            <label id="labelDescription">Description :</label>
+            <textarea id="description"></textarea>
+
+            <button type="submit" class="btn" id="btnAjouter">Ajouter</button>
+        </form>
+    </section>
+
+    <!-- Student List Section -->
+    <section id="listeSection" class="box">
+        <h2 id="listeTitle">Liste des Logements</h2>
+
+        <div id="logementsContainer"></div>
+    </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
