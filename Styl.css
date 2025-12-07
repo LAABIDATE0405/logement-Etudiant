@@ -4,12 +4,8 @@ body {
     padding: 30px;
 }
 
-button {
-    padding: 10px 20px;
-    background: #0099ff;
-    border-radius: 7px;
-    border: none;
-    color: white;
-    <button id="etudiant">Je suis étudiant</button>
-<button id="owner">Je suis propriétaire</button>
+:root{
+  --main:#0066ff;
+  --bg:#fff;
+  --text:#333;
 }
