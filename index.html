@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="assets/style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>logement-Etudiant</title>
 
-  <!-- ربط CSS -->
+  <!-- رابط ملف الستايل (لا تغيري المسار الآن) -->
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
 
-  <!-- Header -->
+<body>
+  <!-- HEADER -->
   <header>
-    <img src="images/logo.png" alt="Logo" class="logo">
+    <img src="images/logo.png" alt="Logo" class="logo" style="height:48px;">
     <h1 id="title">logement-Etudiant</h1>
+
     <div class="controls">
-      <label for="role">Vous êtes:</label>
+      <label for="role" id="labelRole">Vous êtes:</label>
       <select id="role">
         <option value="student">Étudiant</option>
         <option value="owner">Propriétaire</option>
       </select>
 
-      <label for="lang">Langue:</label>
+      <label for="lang" id="labelLang">Langue:</label>
       <select id="lang">
         <option value="fr">Français</option>
         <option value="en">English</option>
@@ -31,34 +31,34 @@
     </div>
   </header>
 
-  <!-- Main content -->
+  <!-- MAIN -->
   <main>
-    <!-- Section étudiant -->
+    <!-- SECTION étudiant (يبان للطالب) -->
     <section id="studentSection">
-      <h2>Logements disponibles</h2>
+      <h2 id="studentTitle">Logements disponibles</h2>
       <form id="studentForm">
-        <input type="text" placeholder="Ville" name="ville">
-        <input type="number" placeholder="Budget" name="budget">
-        <button type="submit">Chercher</button>
+        <input type="text" name="ville" placeholder="Ville" />
+        <input type="number" name="budget" placeholder="Budget (DH)" />
+        <button type="submit" id="studentSearch">Chercher</button>
       </form>
       <ul id="studentList"></ul>
     </section>
 
-    <!-- Section propriétaire -->
+    <!-- SECTION propriétaire (يبان للمالك) -->
     <section id="ownerSection">
-      <h2>Ajouter un logement</h2>
+      <h2 id="ownerTitle">Ajouter un logement</h2>
       <form id="ownerForm">
-        <input type="text" placeholder="Adresse" name="adresse">
-        <input type="number" placeholder="Prix (DH)" name="prix">
-        <input type="number" placeholder="Nombre de chambres" name="chambres">
-        <input type="file" name="image">
-        <button type="submit">Publier</button>
+        <input type="text" name="adresse" placeholder="Adresse" required />
+        <input type="number" name="prix" placeholder="Prix (DH)" required />
+        <input type="number" name="chambres" placeholder="Nombre de chambres" required />
+        <input type="file" name="image" />
+        <button type="submit" id="ownerPublish">Publier</button>
       </form>
       <ul id="ownerList"></ul>
     </section>
   </main>
 
-  <!-- ربط JS -->
+  <!-- ربط الجافاسكريبت -->
   <script src="assets/script.js"></script>
 </body>
 </html>
