@@ -1,133 +1,331 @@
 <!DOCTYPE html>
-<html lang="fr" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="app_name">Logement Étudiant</title>
+    <title>StudentStay - سكن الطلاب الملون</title>
     
-    <!-- الخطوط والأيقونات -->
+    <!-- الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- ملفات CSS -->
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/language.css">
+    <link rel="stylesheet" href="css/colors.css">
+    
+    <!-- اللوغو -->
+    <link rel="icon" type="image/x-icon" href="images/logo.ico">
 </head>
 <body>
-    <!-- شريط التنقل -->
+    <!-- 🔷 شريط التنعل الملون -->
     <nav class="navbar">
         <div class="container">
+            <!-- اللوغو -->
             <a href="#" class="logo">
-                <i class="fas fa-home"></i>
-                <span data-translate="app_name">Logement Étudiant</span>
+                <div class="logo-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">StudentStay</span>
+                    <span class="logo-sub">سكن الطلاب</span>
+                </div>
             </a>
             
-            <!-- أزرار اللغة ستضاف تلقائيا -->
-            
-            <div class="nav-links">
-                <a href="#recherche" class="nav-link active">
-                    <i class="fas fa-search"></i>
-                    <span data-translate="search_housing">البحث عن سكن</span>
-                </a>
-                <a href="#ajouter" class="nav-link">
-                    <i class="fas fa-plus-circle"></i>
-                    <span data-translate="add_listing">إضافة إعلان</span>
-                </a>
-                <a href="#aide" class="nav-link">
-                    <i class="fas fa-question-circle"></i>
-                    <span data-translate="help">المساعدة</span>
-                </a>
-                <button class="btn-login">
-                    <i class="fas fa-user"></i>
-                    <span data-translate="login">تسجيل الدخول</span>
+            <!-- 🔘 أزرار اختيار الواجهة -->
+            <div class="user-type-buttons">
+                <button class="user-btn active" data-user="student">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>طالب</span>
                 </button>
+                <button class="user-btn" data-user="owner">
+                    <i class="fas fa-user-tie"></i>
+                    <span>صاحب عقار</span>
+                </button>
+            </div>
+            
+            <!-- قائمة التنقل -->
+            <div class="nav-menu">
+                <a href="#search" class="nav-item active">
+                    <i class="fas fa-search"></i>
+                    <span>ابحث عن سكن</span>
+                </a>
+                <a href="#offers" class="nav-item">
+                    <i class="fas fa-percent"></i>
+                    <span>عروض خاصة</span>
+                </a>
+                <a href="#help" class="nav-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>مساعدة</span>
+                </a>
+                <div class="user-menu">
+                    <button class="btn-signup">
+                        <i class="fas fa-user-plus"></i>
+                        <span>اشتراك</span>
+                    </button>
+                    <button class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>تسجيل دخول</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- أزرار اللغة -->
+            <div class="language-switch">
+                <button class="lang-btn active">العربية</button>
+                <button class="lang-btn">Français</button>
             </div>
         </div>
     </nav>
 
-    <!-- قسم البحث -->
-    <section class="search-section" id="recherche">
-        <div class="container">
-            <div class="section-header">
-                <h1 data-translate="search_title">
-                    <i class="fas fa-search-location"></i>
-                    ابحث عن سكنك المثالي
+    <!-- 🌟 قسم الهيرو - ملون وجذاب -->
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">
+                    <span class="highlight">سكن طلابي</span> يناسب ميزانيتك<br>
+                    ويحقق أحلامك الدراسية
                 </h1>
-                <p data-translate="search_subtitle">أكثر من 500 سكن متاح للطلاب في مختلف المدن</p>
-            </div>
-            
-            <div class="search-box">
-                <div class="search-input">
-                    <i class="fas fa-city"></i>
-                    <input type="text" id="ville" data-translate-placeholder="city_placeholder" placeholder="أدخل اسم المدينة">
+                <p class="hero-subtitle">
+                    اكتشف أكثر من <strong>1,000+</strong> سكن طلابي في <strong>12 مدينة</strong> مغربية
+                </p>
+                
+                <!-- 🔎 صندوق البحث الكبير -->
+                <div class="search-container">
+                    <div class="search-card">
+                        <div class="search-tabs">
+                            <button class="tab-btn active" data-tab="rent">
+                                <i class="fas fa-search"></i>
+                                أبحث عن سكن
+                            </button>
+                            <button class="tab-btn" data-tab="offer">
+                                <i class="fas fa-home"></i>
+                                أعرض سكني
+                            </button>
+                        </div>
+                        
+                        <!-- نموذج البحث للطالب -->
+                        <div class="search-form active" id="rent-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <i class="fas fa-map-marker-alt input-icon"></i>
+                                    <input type="text" placeholder="أين تريد العيش؟ (المدينة، الحي)">
+                                </div>
+                                
+                                <div class="input-group">
+                                    <i class="fas fa-calendar input-icon"></i>
+                                    <input type="date" placeholder="تاريخ الوصول">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <i class="fas fa-user-graduate input-icon"></i>
+                                    <select>
+                                        <option>نوع السكن</option>
+                                        <option>غرفة خاصة</option>
+                                        <option>شقة كاملة</option>
+                                        <option>استوديو</option>
+                                        <option>سكن مشترك</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="input-group range-group">
+                                    <i class="fas fa-wallet input-icon"></i>
+                                    <div class="range-label">
+                                        <span>الميزانية: <strong>500 - 3000 درهم</strong></span>
+                                    </div>
+                                    <input type="range" min="500" max="3000" value="1500" class="budget-slider">
+                                </div>
+                            </div>
+                            
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i>
+                                ابحث الآن
+                            </button>
+                        </div>
+                        
+                        <!-- نموذج العرض لصاحب العقار -->
+                        <div class="search-form" id="offer-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <i class="fas fa-home input-icon"></i>
+                                    <input type="text" placeholder="عنوان العقار بالكامل">
+                                </div>
+                                
+                                <div class="input-group">
+                                    <i class="fas fa-tag input-icon"></i>
+                                    <input type="number" placeholder="السعر الشهري (درهم)">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <i class="fas fa-bed input-icon"></i>
+                                    <select>
+                                        <option>عدد الغرف</option>
+                                        <option>1 غرفة</option>
+                                        <option>2 غرف</option>
+                                        <option>3 غرف</option>
+                                        <option>4+ غرف</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <i class="fas fa-camera input-icon"></i>
+                                    <div class="file-upload-btn">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        رفع صور العقار
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="search-btn owner-btn">
+                                <i class="fas fa-rocket"></i>
+                                عرض سكني الآن
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="search-input">
-                    <i class="fas fa-wallet"></i>
-                    <input type="number" id="budget" data-translate-placeholder="budget_placeholder" placeholder="الميزانية الشهرية (درهم)">
+                <!-- 📊 إحصائيات -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <i class="fas fa-home stat-icon"></i>
+                        <div class="stat-number">1,250+</div>
+                        <div class="stat-label">سكن متاح</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users stat-icon"></i>
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">طالب سعيد</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-city stat-icon"></i>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">مدينة مغربية</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shield-alt stat-icon"></i>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">آمن ومضمون</div>
+                    </div>
                 </div>
-                
-                <div class="search-input">
-                    <i class="fas fa-bed"></i>
-                    <select id="chambres">
-                        <option value="" data-translate="rooms_placeholder">عدد الغرف</option>
-                        <option value="1" data-translate="one_room">غرفة واحدة</option>
-                        <option value="2">غرفتان</option>
-                        <option value="3">3 غرف أو أكثر</option>
-                    </select>
-                </div>
-                
-                <button class="btn-search" id="chercher" data-translate="search_button">
-                    <i class="fas fa-search"></i> بحث
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- قسم النتائج -->
-    <section class="results-section">
+    <!-- 🏙️ قسم المدن الشائعة -->
+    <section class="cities-section">
         <div class="container">
-            <h2 data-translate="available_housing"><i class="fas fa-list-ul"></i> السكن المتاح</h2>
+            <div class="section-header">
+                <h2 class="section-title">اكتشف أفضل المدن للطلاب</h2>
+                <p class="section-subtitle">مدن تجمع بين جودة الحياة والتكاليف المناسبة</p>
+            </div>
             
-            <div class="properties-grid" id="properties-list">
-                <!-- سكن 1 -->
-                <div class="property-card">
-                    <div class="property-image" style="background: #4a6fa5;">
-                        <span class="property-badge">مُفضل</span>
+            <div class="cities-grid">
+                <div class="city-card" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <div class="city-overlay">
+                        <h3>الدار البيضاء</h3>
+                        <p>+350 سكن طلابي</p>
+                        <span class="city-price">من 800 درهم</span>
                     </div>
-                    <div class="property-info">
-                        <h3>شقة للطلاب - حي الرياض</h3>
+                </div>
+                
+                <div class="city-card" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <div class="city-overlay">
+                        <h3>الرباط</h3>
+                        <p>+280 سكن طلابي</p>
+                        <span class="city-price">من 700 درهم</span>
+                    </div>
+                </div>
+                
+                <div class="city-card" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <div class="city-overlay">
+                        <h3>مراكش</h3>
+                        <p>+200 سكن طلابي</p>
+                        <span class="city-price">من 600 درهم</span>
+                    </div>
+                </div>
+                
+                <div class="city-card" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <div class="city-overlay">
+                        <h3>فاس</h3>
+                        <p>+180 سكن طلابي</p>
+                        <span class="city-price">من 550 درهم</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏠 قسم السكن المميز -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">سكن متميز للطلاب</h2>
+                <p class="section-subtitle">خيارات رائعة تجمع بين الراحة والسعر المناسب</p>
+            </div>
+            
+            <div class="properties-grid">
+                <!-- سكن 1 -->
+                <div class="property-card featured">
+                    <div class="property-image">
+                        <div class="property-tag premium">مميز</div>
+                        <div class="property-rating">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">شقة أنيقة قرب جامعة الحسن الثاني</h3>
                         <p class="property-location">
-                            <i class="fas fa-map-marker-alt"></i> الدار البيضاء
+                            <i class="fas fa-map-marker-alt"></i>
+                            الدار البيضاء، حي المعاريف
                         </p>
-                        <div class="property-details">
+                        <div class="property-features">
                             <span><i class="fas fa-bed"></i> 2 غرف</span>
                             <span><i class="fas fa-bath"></i> 1 حمام</span>
+                            <span><i class="fas fa-wifi"></i> واي فاي</span>
                         </div>
-                        <div class="property-price">
-                            <strong>1800 درهم/شهر</strong>
-                            <button class="btn-details">عرض التفاصيل</button>
+                        <div class="property-footer">
+                            <div class="property-price">
+                                <strong>1,850 درهم</strong>
+                                <span>/شهر</span>
+                            </div>
+                            <button class="btn-book">
+                                <i class="fas fa-calendar-check"></i>
+                                احجز الآن
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- سكن 2 -->
                 <div class="property-card">
-                    <div class="property-image" style="background: #16697a;">
-                        <span class="property-badge new">جديد</span>
+                    <div class="property-image" style="background: linear-gradient(135deg, #ff9a9e, #fad0c4);">
+                        <div class="property-tag discount">خصم 15%</div>
                     </div>
-                    <div class="property-info">
-                        <h3>استوديو قرب الجامعة</h3>
+                    <div class="property-content">
+                        <h3 class="property-title">استوديو جديد للطلاب</h3>
                         <p class="property-location">
-                            <i class="fas fa-map-marker-alt"></i> الرباط
+                            <i class="fas fa-map-marker-alt"></i>
+                            الرباط، حي أكدال
                         </p>
-                        <div class="property-details">
+                        <div class="property-features">
                             <span><i class="fas fa-bed"></i> 1 غرفة</span>
                             <span><i class="fas fa-bath"></i> 1 حمام</span>
+                            <span><i class="fas fa-utensils"></i> مطبخ</span>
                         </div>
-                        <div class="property-price">
-                            <strong>1200 درهم/شهر</strong>
-                            <button class="btn-details">عرض التفاصيل</button>
+                        <div class="property-footer">
+                            <div class="property-price">
+                                <strong>1,200 درهم</strong>
+                                <span>/شهر</span>
+                            </div>
+                            <button class="btn-book">
+                                <i class="fas fa-eye"></i>
+                                عرض التفاصيل
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -135,126 +333,127 @@
         </div>
     </section>
 
-    <!-- قسم إضافة إعلان -->
-    <section class="add-section" id="ajouter">
+    <!-- 💰 قسم كيف يعمل -->
+    <section class="how-it-works">
         <div class="container">
-            <div class="form-container">
-                <h2 data-translate="add_listing"><i class="fas fa-plus-circle"></i> إضافة إعلان</h2>
-                <p data-translate="add_listing_subtitle">شارك سكنك مع الطلاب واحصل على دخل إضافي</p>
+            <div class="section-header">
+                <h2 class="section-title">كيف تعمل منصتنا؟</h2>
+                <p class="section-subtitle">3 خطوات بسيطة للعثور على سكنك المثالي</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-search step-icon"></i>
+                    <h3>ابحث واختر</h3>
+                    <p>ابحث عن السكن المناسب باستخدام فلاتر متقدمة</p>
+                </div>
                 
-                <form id="add-property-form">
-                    <div class="form-group">
-                        <label for="adresse" data-translate="full_address">
-                            <i class="fas fa-map-marked-alt"></i> العنوان الكامل
-                        </label>
-                        <input type="text" id="adresse" placeholder="الحي، الشارع، رقم المنزل..." required>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prix" data-translate="monthly_price">
-                                <i class="fas fa-tag"></i> السعر الشهري (درهم)
-                            </label>
-                            <input type="number" id="prix" min="500" max="5000" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="chambres" data-translate="rooms_number">
-                                <i class="fas fa-door-open"></i> عدد الغرف
-                            </label>
-                            <select id="chambres" required>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="description" data-translate="description">
-                            <i class="fas fa-align-left"></i> الوصف
-                        </label>
-                        <textarea id="description" rows="4" placeholder="صف السكن والمزايا المتاحة..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label data-translate="photos">
-                            <i class="fas fa-camera"></i> صور السكن
-                        </label>
-                        <div class="file-upload">
-                            <label class="file-label" data-translate="choose_files">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>اختر صور السكن</span>
-                            </label>
-                            <input type="file" id="photos" accept="image/*" multiple style="display: none;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact" data-translate="contact_info">
-                            <i class="fas fa-phone"></i> معلومات الاتصال
-                        </label>
-                        <input type="tel" id="contact" data-translate-placeholder="phone_placeholder" placeholder="رقم الهاتف" required>
-                    </div>
-                    
-                    <button type="submit" class="btn-submit" data-translate="publish_button">
-                        <i class="fas fa-paper-plane"></i> نشر الإعلان
-                    </button>
-                </form>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-calendar-alt step-icon"></i>
+                    <h3>احجز زيارتك</h3>
+                    <p>حدد موعداً لزيارة السكن والتقييم المباشر</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-file-contract step-icon"></i>
+                    <h3>عقد آمن</h3>
+                    <p>وّقع العقد الإلكتروني واستلم مفاتيح سكنك</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- تذييل الصفحة -->
-    <footer class="footer">
+    <!-- 📱 قسم التطبيق -->
+    <section class="app-section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 data-translate="app_name"><i class="fas fa-home"></i> Logement Étudiant</h3>
-                    <p>منصة مختصة في توفير سكن ملائم للطلاب بأسعار مناسبة</p>
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>حمّل تطبيق StudentStay</h2>
+                    <p>ابحث، احجز، وادفع من خلال تطبيقنا السهل الاستخدام</p>
+                    <div class="app-buttons">
+                        <button class="app-store-btn">
+                            <i class="fab fa-apple"></i>
+                            App Store
+                        </button>
+                        <button class="play-store-btn">
+                            <i class="fab fa-google-play"></i>
+                            Google Play
+                        </button>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <!-- يمكن وضع صورة للتطبيق هنا -->
+                    <div class="phone-mockup">
+                        <div class="phone-screen"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏁 التذييل -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <div>
+                            <h3>StudentStay</h3>
+                            <p>سكن الطلاب الملون</p>
+                        </div>
+                    </div>
+                    <p class="footer-about">
+                        منصة رائدة في توفير سكن طلابي آمن، مريح، وبأسعار مناسبة في جميع أنحاء المغرب.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h4 data-translate="quick_links">روابط سريعة</h4>
-                    <a href="#recherche" data-translate="search_housing">البحث عن سكن</a>
-                    <a href="#ajouter" data-translate="add_listing">إضافة إعلان</a>
-                    <a href="#" data-translate="terms">شروط الاستخدام</a>
-                    <a href="#" data-translate="privacy">الخصوصية</a>
+                <div class="footer-col">
+                    <h4>للطلاب</h4>
+                    <a href="#">البحث عن سكن</a>
+                    <a href="#">عروض خاصة</a>
+                    <a href="#">نصائح للطلاب</a>
+                    <a href="#">الأسئلة الشائعة</a>
                 </div>
                 
-                <div class="footer-section">
-                    <h4 data-translate="contact_us">اتصل بنا</h4>
-                    <p><i class="fas fa-envelope"></i> contact@logement.ma</p>
-                    <p><i class="fas fa-phone"></i> +212 600-000000</p>
+                <div class="footer-col">
+                    <h4>لأصحاب العقارات</h4>
+                    <a href="#">عرض سكنك</a>
+                    <a href="#">إدارة العقارات</a>
+                    <a href="#">نصائح للملاك</a>
+                    <a href="#">العمولات</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <p><i class="fas fa-phone"></i> 0522-123456</p>
+                    <p><i class="fas fa-envelope"></i> info@studentstay.ma</p>
+                    <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء، المغرب</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p data-translate="rights_reserved">© 2024 Logement Étudiant. جميع الحقوق محفوظة</p>
+                <p>© 2024 StudentStay. جميع الحقوق محفوظة</p>
+                <div class="footer-links">
+                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">سياسة الاستخدام</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- ملفات JavaScript -->
-    <script src="js/language.js"></script>
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
-    
-    <script>
-        // كود بسيط لرفع الملفات
-        document.addEventListener('DOMContentLoaded', function() {
-            // البحث
-            document.getElementById('chercher')?.addEventListener('click', function() {
-                const ville = document.getElementById('ville').value;
-                const budget = document.getElementById('budget').value;
-                alert('بحث: ' + ville + ' - ' + budget + ' درهم');
-            });
-            
-            // إضافة إعلان
-            document.getElementById('add-property-form')?.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('تم إضافة الإعلان بنجاح!');
-            });
-        });
-    </script>
+    <script src="js/switch.js"></script>
 </body>
-    </html>
+                        </html>
