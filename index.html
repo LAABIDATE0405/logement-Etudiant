@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logement Étudiant - المنصة السكنية للطلاب</title>
+    <title data-translate="app_name">Logement Étudiant</title>
+    
+    <!-- الخطوط والأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ملفات CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- بعد ملف style.css -->
-<link rel="stylesheet" href="css/style.css">
-<!-- أضف هذا السطر -->
-<link rel="stylesheet" href="css/language.css">
+    <link rel="stylesheet" href="css/language.css">
 </head>
 <body>
     <!-- شريط التنقل -->
@@ -18,21 +19,27 @@
         <div class="container">
             <a href="#" class="logo">
                 <i class="fas fa-home"></i>
-                <span>Logement Étudiant</span>
+                <span data-translate="app_name">Logement Étudiant</span>
             </a>
+            
+            <!-- أزرار اللغة ستضاف تلقائيا -->
             
             <div class="nav-links">
                 <a href="#recherche" class="nav-link active">
-                    <i class="fas fa-search"></i> البحث عن سكن
+                    <i class="fas fa-search"></i>
+                    <span data-translate="search_housing">البحث عن سكن</span>
                 </a>
                 <a href="#ajouter" class="nav-link">
-                    <i class="fas fa-plus-circle"></i> إضافة إعلان
+                    <i class="fas fa-plus-circle"></i>
+                    <span data-translate="add_listing">إضافة إعلان</span>
                 </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-question-circle"></i> المساعدة
+                <a href="#aide" class="nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span data-translate="help">المساعدة</span>
                 </a>
                 <button class="btn-login">
-                    <i class="fas fa-user"></i> تسجيل الدخول
+                    <i class="fas fa-user"></i>
+                    <span data-translate="login">تسجيل الدخول</span>
                 </button>
             </div>
         </div>
@@ -42,32 +49,35 @@
     <section class="search-section" id="recherche">
         <div class="container">
             <div class="section-header">
-                <h1><i class="fas fa-search-location"></i> ابحث عن سكنك المثالي</h1>
-                <p>أكثر من 500 سكن متاح للطلاب في مختلف المدن</p>
+                <h1 data-translate="search_title">
+                    <i class="fas fa-search-location"></i>
+                    ابحث عن سكنك المثالي
+                </h1>
+                <p data-translate="search_subtitle">أكثر من 500 سكن متاح للطلاب في مختلف المدن</p>
             </div>
             
             <div class="search-box">
                 <div class="search-input">
                     <i class="fas fa-city"></i>
-                    <input type="text" id="ville" placeholder="أدخل اسم المدينة (مثال: الدار البيضاء، الرباط...)">
+                    <input type="text" id="ville" data-translate-placeholder="city_placeholder" placeholder="أدخل اسم المدينة">
                 </div>
                 
                 <div class="search-input">
                     <i class="fas fa-wallet"></i>
-                    <input type="number" id="budget" placeholder="الميزانية الشهرية (درهم)">
+                    <input type="number" id="budget" data-translate-placeholder="budget_placeholder" placeholder="الميزانية الشهرية (درهم)">
                 </div>
                 
                 <div class="search-input">
                     <i class="fas fa-bed"></i>
                     <select id="chambres">
-                        <option value="">عدد الغرف</option>
-                        <option value="1">غرفة واحدة</option>
+                        <option value="" data-translate="rooms_placeholder">عدد الغرف</option>
+                        <option value="1" data-translate="one_room">غرفة واحدة</option>
                         <option value="2">غرفتان</option>
                         <option value="3">3 غرف أو أكثر</option>
                     </select>
                 </div>
                 
-                <button class="btn-search" id="chercher">
+                <button class="btn-search" id="chercher" data-translate="search_button">
                     <i class="fas fa-search"></i> بحث
                 </button>
             </div>
@@ -77,20 +87,12 @@
     <!-- قسم النتائج -->
     <section class="results-section">
         <div class="container">
-            <h2><i class="fas fa-list-ul"></i> السكن المتاح</h2>
-            <div class="filters">
-                <span class="filter-chip active">كل المدن</span>
-                <span class="filter-chip">الدار البيضاء</span>
-                <span class="filter-chip">الرباط</span>
-                <span class="filter-chip">مراكش</span>
-                <span class="filter-chip">فاس</span>
-                <span class="filter-chip">< 2000 درهم</span>
-            </div>
+            <h2 data-translate="available_housing"><i class="fas fa-list-ul"></i> السكن المتاح</h2>
             
             <div class="properties-grid" id="properties-list">
-                <!-- سيتم إضافة السكن ديناميكيًا -->
+                <!-- سكن 1 -->
                 <div class="property-card">
-                    <div class="property-image" style="background-image: url('images/properties/1.jpg');">
+                    <div class="property-image" style="background: #4a6fa5;">
                         <span class="property-badge">مُفضل</span>
                     </div>
                     <div class="property-info">
@@ -101,7 +103,6 @@
                         <div class="property-details">
                             <span><i class="fas fa-bed"></i> 2 غرف</span>
                             <span><i class="fas fa-bath"></i> 1 حمام</span>
-                            <span><i class="fas fa-ruler-combined"></i> 60 م²</span>
                         </div>
                         <div class="property-price">
                             <strong>1800 درهم/شهر</strong>
@@ -110,8 +111,9 @@
                     </div>
                 </div>
                 
+                <!-- سكن 2 -->
                 <div class="property-card">
-                    <div class="property-image" style="background-image: url('images/properties/2.jpg');">
+                    <div class="property-image" style="background: #16697a;">
                         <span class="property-badge new">جديد</span>
                     </div>
                     <div class="property-info">
@@ -122,7 +124,6 @@
                         <div class="property-details">
                             <span><i class="fas fa-bed"></i> 1 غرفة</span>
                             <span><i class="fas fa-bath"></i> 1 حمام</span>
-                            <span><i class="fas fa-ruler-combined"></i> 35 م²</span>
                         </div>
                         <div class="property-price">
                             <strong>1200 درهم/شهر</strong>
@@ -138,55 +139,65 @@
     <section class="add-section" id="ajouter">
         <div class="container">
             <div class="form-container">
-                <h2><i class="fas fa-plus-circle"></i> أضف سكنًا للإيجار</h2>
-                <p>شارك سكنك مع الطلاب واحصل على دخل إضافي</p>
+                <h2 data-translate="add_listing"><i class="fas fa-plus-circle"></i> إضافة إعلان</h2>
+                <p data-translate="add_listing_subtitle">شارك سكنك مع الطلاب واحصل على دخل إضافي</p>
                 
                 <form id="add-property-form">
                     <div class="form-group">
-                        <label for="adresse"><i class="fas fa-map-marked-alt"></i> العنوان الكامل</label>
+                        <label for="adresse" data-translate="full_address">
+                            <i class="fas fa-map-marked-alt"></i> العنوان الكامل
+                        </label>
                         <input type="text" id="adresse" placeholder="الحي، الشارع، رقم المنزل..." required>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="prix"><i class="fas fa-tag"></i> السعر الشهري (درهم)</label>
+                            <label for="prix" data-translate="monthly_price">
+                                <i class="fas fa-tag"></i> السعر الشهري (درهم)
+                            </label>
                             <input type="number" id="prix" min="500" max="5000" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="chambres"><i class="fas fa-door-open"></i> عدد الغرف</label>
+                            <label for="chambres" data-translate="rooms_number">
+                                <i class="fas fa-door-open"></i> عدد الغرف
+                            </label>
                             <select id="chambres" required>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <option value="4+">4 أو أكثر</option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="description"><i class="fas fa-align-left"></i> الوصف</label>
+                        <label for="description" data-translate="description">
+                            <i class="fas fa-align-left"></i> الوصف
+                        </label>
                         <textarea id="description" rows="4" placeholder="صف السكن والمزايا المتاحة..."></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="photos"><i class="fas fa-camera"></i> صور السكن</label>
+                        <label data-translate="photos">
+                            <i class="fas fa-camera"></i> صور السكن
+                        </label>
                         <div class="file-upload">
-                            <label for="photos" class="file-label">
+                            <label class="file-label" data-translate="choose_files">
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <span>اختر صور السكن</span>
-                                <input type="file" id="photos" accept="image/*" multiple>
                             </label>
-                            <div class="file-preview" id="file-preview"></div>
+                            <input type="file" id="photos" accept="image/*" multiple style="display: none;">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="contact"><i class="fas fa-phone"></i> معلومات الاتصال</label>
-                        <input type="tel" id="contact" placeholder="رقم الهاتف" required>
+                        <label for="contact" data-translate="contact_info">
+                            <i class="fas fa-phone"></i> معلومات الاتصال
+                        </label>
+                        <input type="tel" id="contact" data-translate-placeholder="phone_placeholder" placeholder="رقم الهاتف" required>
                     </div>
                     
-                    <button type="submit" class="btn-submit">
+                    <button type="submit" class="btn-submit" data-translate="publish_button">
                         <i class="fas fa-paper-plane"></i> نشر الإعلان
                     </button>
                 </form>
@@ -199,34 +210,51 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-home"></i> Logement Étudiant</h3>
+                    <h3 data-translate="app_name"><i class="fas fa-home"></i> Logement Étudiant</h3>
                     <p>منصة مختصة في توفير سكن ملائم للطلاب بأسعار مناسبة</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>روابط سريعة</h4>
-                    <a href="#recherche">البحث عن سكن</a>
-                    <a href="#ajouter">إضافة إعلان</a>
-                    <a href="#">شروط الاستخدام</a>
-                    <a href="#">الخصوصية</a>
+                    <h4 data-translate="quick_links">روابط سريعة</h4>
+                    <a href="#recherche" data-translate="search_housing">البحث عن سكن</a>
+                    <a href="#ajouter" data-translate="add_listing">إضافة إعلان</a>
+                    <a href="#" data-translate="terms">شروط الاستخدام</a>
+                    <a href="#" data-translate="privacy">الخصوصية</a>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>اتصل بنا</h4>
-                    <p><i class="fas fa-envelope"></i> contact@logement-etudiant.ma</p>
+                    <h4 data-translate="contact_us">اتصل بنا</h4>
+                    <p><i class="fas fa-envelope"></i> contact@logement.ma</p>
                     <p><i class="fas fa-phone"></i> +212 600-000000</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© 2023 Logement Étudiant. جميع الحقوق محفوظة</p>
+                <p data-translate="rights_reserved">© 2024 Logement Étudiant. جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
 
+    <!-- ملفات JavaScript -->
+    <script src="js/language.js"></script>
     <script src="js/main.js"></script>
-    <!-- قبل main.js -->
-<script src="js/language.js"></script>
-<script src="js/main.js"></script>
+    
+    <script>
+        // كود بسيط لرفع الملفات
+        document.addEventListener('DOMContentLoaded', function() {
+            // البحث
+            document.getElementById('chercher')?.addEventListener('click', function() {
+                const ville = document.getElementById('ville').value;
+                const budget = document.getElementById('budget').value;
+                alert('بحث: ' + ville + ' - ' + budget + ' درهم');
+            });
+            
+            // إضافة إعلان
+            document.getElementById('add-property-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('تم إضافة الإعلان بنجاح!');
+            });
+        });
+    </script>
 </body>
-</html>
+    </html>
