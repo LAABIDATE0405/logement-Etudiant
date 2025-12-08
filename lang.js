@@ -1,4 +1,4 @@
-// language.js - ملف واحد للغات
+// الترجمات
 const translations = {
     ar: {
         app_name: "سكن الطلاب",
@@ -60,15 +60,14 @@ const translations = {
     }
 };
 
-// دالة لتغيير اللغة
+// تغيير اللغة
 function changeLanguage(lang) {
-    // تغيير اتجاه الصفحة
+    // اتجاه الصفحة
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
     
-    // ترجمة كل العناصر
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(element => {
+    // ترجمة النصوص
+    document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
             element.textContent = translations[lang][key];
@@ -76,15 +75,14 @@ function changeLanguage(lang) {
     });
     
     // ترجمة placeholders
-    const inputs = document.querySelectorAll('[data-translate-placeholder]');
-    inputs.forEach(input => {
+    document.querySelectorAll('[data-translate-placeholder]').forEach(input => {
         const key = input.getAttribute('data-translate-placeholder');
         if (translations[lang] && translations[lang][key]) {
             input.placeholder = translations[lang][key];
         }
     });
     
-    // حفظ اللغة المفضلة
+    // حفظ اللغة
     localStorage.setItem('language', lang);
     
     // تحديث أزرار اللغة
@@ -98,7 +96,7 @@ function changeLanguage(lang) {
 
 // عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    // إضافة أزرار اللغة إلى الصفحة
+    // إضافة أزرار اللغة
     const navbar = document.querySelector('.navbar .container');
     if (navbar && !document.querySelector('.language-switcher')) {
         const languageSwitcher = document.createElement('div');
@@ -110,11 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.appendChild(languageSwitcher);
     }
     
-    // تحميل اللغة المحفوظة أو استخدام العربية افتراضياً
+    // تحميل اللغة المحفوظة
     const savedLang = localStorage.getItem('language') || 'ar';
     changeLanguage(savedLang);
     
-    // إضافة أحداث لأزرار اللغة
+    // أحداث أزرار اللغة
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('lang-btn')) {
             const lang = e.target.getAttribute('data-lang');
