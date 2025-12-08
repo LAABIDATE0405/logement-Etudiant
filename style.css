@@ -1,76 +1,518 @@
-:root{
-  --main-color:#ff6600;
-  --main-color: #ff6600;
-  --bg-color: #fff;
-  --text-color: #333;
+/* style.css */
+:root {
+    --primary-color: #4a6fa5; /* أزرق جامعي */
+    --secondary-color: #16697a; /* أزرق داكن */
+    --accent-color: #ffa62b; /* برتقالي للتمييز */
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --gray-color: #6c757d;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --radius: 10px;
+    --transition: all 0.3s ease;
 }
 
-body{
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  margin:0; padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
 }
 
-header{
-  background: var(--main-color);
-  color: #fff;
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items:center;
-  justify-content: space-between;
+body {
+    background-color: #f5f7fa;
+    color: var(--dark-color);
+    line-height: 1.6;
 }
 
-header .logo{
-  height:50px;
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.controls{
-  display:flex;
-  gap:12px;
-  align-items:center;
+/* شريط التنقل */
+.navbar {
+    background-color: white;
+    box-shadow: var(--shadow);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-main{
-  max-width:900px;
-  margin:20px auto;
-  padding:0 10px;
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-section{
-  background: var(--bg-color);
-  margin-bottom:15px;
-  padding:15px;
-  border-radius:10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
-input, select, button{
-  display:block;
-  width:100%;
-  padding:8px;
-  margin:8px 0;
-  border-radius:6px;
-  border:1px solid #ddd;
+.logo i {
+    margin-left: 10px;
+    font-size: 1.8rem;
 }
 
-button{
-  background: var(--main-color);
-  color:#fff;
-  border:none;
-  cursor:pointer;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-button:hover{
-  opacity:0.9;
+.nav-link {
+    text-decoration: none;
+    color: var(--gray-color);
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-ul{
-  list-style:none;
-  padding:0;
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+    background-color: rgba(74, 111, 165, 0.1);
 }
 
-ul li{
-  padding:8px;
-  border-bottom:1px solid #eee;
+.btn-login {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-login:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* قسم البحث */
+.search-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.search-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: var(--radius);
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: var(--radius);
+    gap: 10px;
+}
+
+.search-input i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.search-input input, .search-input select {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    background: transparent;
+}
+
+.btn-search {
+    grid-column: span 1;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.btn-search:hover {
+    background-color: #e69500;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 166, 43, 0.3);
+}
+
+/* قسم النتائج */
+.results-section {
+    padding: 40px 0;
+}
+
+.results-section h2 {
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.filter-chip {
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid #ddd;
+}
+
+.filter-chip:hover, .filter-chip.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.property-card {
+    background-color: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.property-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.property-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.property-badge.new {
+    background-color: var(--success-color);
+}
+
+.property-info {
+    padding: 20px;
+}
+
+.property-info h3 {
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.property-location {
+    color: var(--gray-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.property-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--gray-color);
+}
+
+.property-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.property-price strong {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.btn-details {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-details:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* قسم إضافة إعلان */
+.add-section {
+    background-color: white;
+    padding: 60px 0;
+    margin-top: 40px;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.form-container h2 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-container p {
+    color: var(--gray-color);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.file-upload {
+    margin-top: 10px;
+}
+
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: 2px dashed #ddd;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    color: var(--gray-color);
+}
+
+.file-label:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(74, 111, 165, 0.05);
+}
+
+.file-label i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.file-label input {
+    display: none;
+}
+
+.file-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-submit {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* التذييل */
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-section h3 i {
+    color: var(--accent-color);
+    margin-left: 10px;
+}
+
+.footer-section a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #bbb;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* يمكن استبداله بقائمة هامبرغر */
+    }
+    
+    .section-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .search-box {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .properties-grid {
+        grid-template-columns: 1fr;
+    }
 }
