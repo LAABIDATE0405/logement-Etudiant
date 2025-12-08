@@ -1,102 +1,95 @@
-// Sections
-const studentSection = document.getElementById("studentSection");
-const ownerSection = document.getElementById("ownerSection");
-
-// Forms
-const studentForm = document.getElementById("studentForm");
-const ownerForm = document.getElementById("ownerForm");
-const studentList = document.getElementById("studentList");
-const ownerList = document.getElementById("ownerList");
-
-// Role & Language
-const roleSelect = document.getElementById("role");
-const langSelect = document.getElementById("lang");
-
-function updateView(){
-  if(roleSelect.value==="student"){
-    studentSection.style.display="block";
-    ownerSection.style.display="none";
-  } else {
-    studentSection.style.display="none";
-    ownerSection.style.display="block";
-  }
-}
-roleSelect.addEventListener("change", updateView);
-updateView();
-
-// Dummy Data
-let logements=[];
-
-// Owner form submit
-ownerForm.addEventListener("submit", e=>{
-  e.preventDefault();
-  const adresse = ownerForm.adresse.value;
-  const prix = ownerForm.prix.value;
-  const chambres = ownerForm.chambres.value;
-  logements.push({adresse, prix, chambres});
-  renderOwnerList();
-  ownerForm.reset();
-});
-
-function renderOwnerList(){
-  ownerList.innerHTML="";
-  logements.forEach(l=>{
-    const li=document.createElement("li");
-    li.textContent=`${l.adresse} — ${l.chambres} chambre(s) — ${l.prix} DH`;
-    ownerList.appendChild(li);
-  });
-}
-
-// Student form submit (search simulation)
-studentForm.addEventListener("submit", e=>{
-  e.preventDefault();
-  renderStudentList();
-});
-
-function renderStudentList(){
-  studentList.innerHTML="";
-  logements.forEach(l=>{
-    const li=document.createElement("li");
-    li.textContent=`${l.adresse} — ${l.chambres} chambre(s) — ${l.prix} DH`;
-    studentList.appendChild(li);
-  });
-}
-
-// Language change
-langSelect.addEventListener("change", ()=>{
-  const lang = langSelect.value;
-  const translations = {
-    fr:{
-      student:"Étudiant",
-      owner:"Propriétaire",
-      studentTitle:"Logements disponibles",
-      ownerTitle:"Ajouter un logement",
-      search:"Chercher",
-      publish:"Publier"
-    },
-    en:{
-      student:"Student",
-      owner:"Owner",
-      studentTitle:"Available housing",
-      ownerTitle:"Add a housing",
-      search:"Search",
-      publish:"Publish"
-    },
-    ar:{
-      student:"طالب",
-      owner:"مالك",
-      studentTitle:"المساكن المتوفرة",
-      ownerTitle:"إضافة مسكن",
-      search:"بحث",
-      publish:"نشر"
+// main.js
+document.addEventListener('DOMContentLoaded', function() {
+    // البحث عن سكن
+    const searchBtn = document.getElementById('chercher');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            const ville = document.getElementById('ville').value;
+            const budget = document.getElementById('budget').value;
+            const chambres = document.getElementById('chambres').value;
+            
+            // هنا يمكن إضافة كود البحث (API call)
+            alert(`بحث: مدينة ${ville}, ميزانية ${budget} درهم, ${chambres} غرف`);
+        });
     }
-  };
-
-  const t = translations[lang];
-
-  studentSection.querySelector("h2").textContent = t.studentTitle;
-  studentForm.querySelector("button").textContent = t.search;
-  ownerSection.querySelector("h2").textContent = t.ownerTitle;
-  ownerForm.querySelector("button").textContent = t.publish;
-  document.querySelector("label[for='role']").textContent = t.student + " / " + t.owner;
+    
+    // فلترة النتائج
+    const filterChips = document.querySelectorAll('.filter-chip');
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            filterChips.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            
+            // هنا يمكن إضافة كود التصفية
+            console.log(`تصفية حسب: ${this.textContent}`);
+        });
+    });
+    
+    // رفع الصور
+    const fileInput = document.getElementById('photos');
+    const filePreview = document.getElementById('file-preview');
+    
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            filePreview.innerHTML = '';
+            
+            for (let file of this.files) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                    img.style.objectFit = 'cover';
+                    img.style.margin = '5px';
+                    img.style.borderRadius = '5px';
+                    filePreview.appendChild(img);
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    
+    // إضافة إعلان جديد
+    const addForm = document.getElementById('add-property-form');
+    if (addForm) {
+        addForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const adresse = document.getElementById('adresse').value;
+            const prix = document.getElementById('prix').value;
+            const chambres = document.getElementById('chambres').value;
+            const description = document.getElementById('description').value;
+            const contact = document.getElementById('contact').value;
+            
+            // هنا يمكن إضافة كود الإرسال إلى الخادم
+            alert(`تم إضافة الإعلان بنجاح!\nالعنوان: ${adresse}\nالسعر: ${prix} درهم`);
+            
+            // إعادة تعيين النموذج
+            this.reset();
+            filePreview.innerHTML = '';
+        });
+    }
+    
+    // التنقل بين الأقسام
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.hash) {
+                e.preventDefault();
+                
+                const targetId = this.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
 });
