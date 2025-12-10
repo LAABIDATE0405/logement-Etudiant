@@ -1,4 +1,6 @@
-/* ===== للأجهزة الكبيرة جداً ===== */
+/* ===== RESPONSIVE STYLES ===== */
+
+/* للأجهزة الكبيرة جداً */
 @media (min-width: 1400px) {
     .container {
         max-width: 1320px;
@@ -14,7 +16,7 @@
     }
 }
 
-/* ===== للأجهزة المتوسطة ===== */
+/* للأجهزة المتوسطة */
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;
@@ -28,17 +30,9 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
-    
-    .choice-cards {
-        flex-direction: column;
-    }
-    
-    .choice-card {
-        min-width: 100%;
-    }
 }
 
-/* ===== للأجهزة الصغيرة (تابلت) ===== */
+/* للأجهزة الصغيرة (تابلت) */
 @media (max-width: 992px) {
     html {
         font-size: 16px;
@@ -48,6 +42,7 @@
         max-width: 720px;
     }
     
+    /* التنقل للجوال */
     .navbar .container {
         flex-direction: column;
         gap: 20px;
@@ -94,12 +89,21 @@
         gap: 40px;
     }
     
+    /* صندوق الاختيار للجوال */
     .choice-container {
         padding: 40px 30px;
     }
+    
+    .choice-cards {
+        flex-direction: column;
+    }
+    
+    .choice-card {
+        min-width: 100%;
+    }
 }
 
-/* ===== للأجهزة الصغيرة جداً (موبايل) ===== */
+/* للأجهزة الصغيرة جداً (موبايل) */
 @media (max-width: 768px) {
     .hero-section {
         margin-top: 120px;
@@ -127,6 +131,7 @@
         margin: 0 15px;
     }
     
+    /* شريط اللغة للجوال */
     .language-switcher {
         top: 15px;
         left: 15px;
@@ -138,12 +143,14 @@
         font-size: 0.85rem;
     }
     
+    /* عرض نوع المستخدم للجوال */
     .user-type-display {
         min-width: 140px;
         padding: 10px 20px;
         font-size: 0.95rem;
     }
     
+    /* إخفاء النصوص في التنقل للجوال */
     .nav-link span,
     .login-btn span {
         display: none;
@@ -158,6 +165,7 @@
         font-size: 1.2rem;
     }
     
+    /* تحسين العقارات للجوال */
     .property-title {
         font-size: 1.4rem;
     }
@@ -186,6 +194,7 @@
         justify-content: center;
     }
     
+    /* الفوتر للجوال */
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -205,6 +214,7 @@
         justify-content: center;
     }
     
+    /* صندوق الاختيار للجوال الصغير */
     .choice-container {
         padding: 30px 20px;
     }
@@ -224,9 +234,17 @@
     .choice-card h3 {
         font-size: 1.4rem;
     }
+    
+    /* زر العودة للأعلى للجوال */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
 }
 
-/* ===== للأجهزة الصغيرة جداً جداً ===== */
+/* للأجهزة الصغيرة جداً جداً */
 @media (max-width: 480px) {
     .hero-title {
         font-size: 1.8rem;
@@ -240,12 +258,14 @@
         font-size: 1.6rem;
     }
     
+    /* أزرار كبيرة للجوال */
     .search-button,
     .publish-btn {
         padding: 18px;
         font-size: 1.2rem;
     }
     
+    /* صور العقارات للجوال */
     .property-image {
         height: 200px;
     }
@@ -254,12 +274,14 @@
         padding: 20px;
     }
     
+    /* تحسين المدخلات للجوال */
     .input-group,
     .form-group input,
     .form-group select {
         padding: 15px;
     }
     
+    /* رفع الملفات للجوال */
     .file-upload-area {
         padding: 30px 20px;
     }
@@ -272,6 +294,7 @@
         font-size: 1rem;
     }
     
+    /* اللوجو للجوال */
     .logo-main {
         font-size: 1.5rem;
     }
@@ -281,6 +304,7 @@
         height: 40px;
     }
     
+    /* شريط اللغة عمودي للجوال الصغير */
     .language-switcher {
         flex-direction: column;
         padding: 10px;
@@ -293,9 +317,17 @@
         padding: 8px 12px;
         font-size: 0.8rem;
     }
+    
+    /* إشعارات للجوال */
+    .quick-notification {
+        max-width: 90%;
+        right: 5%;
+        left: 5%;
+        top: 10px;
+    }
 }
 
-/* ===== لشاشات الطولية (Portrait) ===== */
+/* لشاشات الطولية (Portrait) */
 @media (max-height: 700px) {
     .user-choice-modal {
         align-items: flex-start;
@@ -305,5 +337,176 @@
     .choice-container {
         max-height: 90vh;
         overflow-y: auto;
+    }
+}
+
+/* للوضع الأفقي (Landscape) على الجوال */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding: 40px 0;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .search-box {
+        padding: 20px;
+    }
+}
+
+/* دعم اللمس */
+@media (hover: none) and (pointer: coarse) {
+    /* تحسين اللمس للأزرار */
+    button,
+    .btn,
+    .nav-link,
+    .choice-card {
+        min-height: 44px; /* الحجم الأدنى للمس */
+    }
+    
+    /* زيادة مساحة النقر */
+    .property-features span,
+    .filter-btn {
+        padding: 10px 15px;
+    }
+    
+    /* إزالة hover effects للجوال */
+    .property-card:hover {
+        transform: none;
+    }
+    
+    /* تحسين شريط التمرير */
+    .budget-slider::-webkit-slider-thumb {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* تحسين الطباعة */
+@media print {
+    .navbar,
+    .language-switcher,
+    .search-box,
+    .add-section,
+    .features-section,
+    .back-to-top,
+    .user-choice-modal {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .property-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* دعم الوضع الداكن */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light: #1a1a1a;
+        --dark: #f8f9fa;
+        --gray: #adb5bd;
+    }
+    
+    body {
+        background: #121212;
+        color: var(--dark);
+    }
+    
+    .search-box,
+    .add-container,
+    .property-card,
+    .input-group,
+    .form-group input,
+    .form-group select {
+        background: #2d2d2d;
+        color: var(--dark);
+        border-color: #444;
+    }
+    
+    .budget-slider-container {
+        background: #2d2d2d;
+        border-color: #444;
+    }
+    
+    .file-upload-area {
+        background: #2d2d2d;
+        border-color: #555;
+    }
+    
+    .nav-link,
+    .hero-subtitle,
+    .section-subtitle,
+    .property-location,
+    .property-features span,
+    .footer-about,
+    .footer-section a,
+    .footer-section p,
+    .skip-choice {
+        color: var(--gray);
+    }
+}
+
+/* دعم الشاشات عالية الدقة */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-icon,
+    .choice-icon,
+    .feature-icon {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* دعم الشاشات الصغيرة القديمة */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .logo-main {
+        font-size: 1.3rem;
+    }
+    
+    .nav-link,
+    .login-btn {
+        padding: 8px 10px;
+    }
+    
+    .property-features {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* دعم الشاشات الكبيرة جداً */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .properties-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
