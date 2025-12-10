@@ -1,49 +1,23 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-translate="title.welcome">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title.welcome">StudentStay - سكن الطلاب</title>
+    <title>StudentStay - سكن الطلاب</title>
     
-    <!-- Font Awesome للأيقونات -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- خط عربي -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- ملفات CSS الخاصة بنا -->
+    <!-- ملفات CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/animations.css">
-    <!-- dashboard.css ليس مطلوباً في الصفحة الرئيسية -->
-    
-    <!-- أيقونة الموقع -->
-    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
-    
-    <!-- وصف الموقع لمحركات البحث -->
-    <meta name="description" content="منصة سكن الطلاب في المغرب - ابحث عن سكن طلابي أو أضف سكنك">
-    <meta name="keywords" content="سكن طلابي, طلاب, عقارات, مغرب, سكن جامعي">
-    <meta name="author" content="StudentStay">
-    
-    <!-- Open Graph لوسائل التواصل -->
-    <meta property="og:title" content="StudentStay - سكن الطلاب">
-    <meta property="og:description" content="ابحث عن سكن طلابي في جميع المدن المغربية">
-    <meta property="og:image" content="assets/images/logo-social.png">
-    <meta property="og:url" content="https://studentstay.ma">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="StudentStay - سكن الطلاب">
-    <meta name="twitter:description" content="منصة سكن الطلاب الأولى في المغرب">
     
     <style>
-        /* أنيميشن مؤقت لحين تحميل animations.css */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
+        /* معاينة التحميل */
         .preloader {
             position: fixed;
             top: 0;
@@ -70,96 +44,139 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        
+        /* إشعارات سريعة */
+        .quick-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #06d6a0;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            max-width: 350px;
+            font-weight: 500;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* إصلاح صندوق الاختيار */
+        .user-choice-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .user-choice-modal.show {
+            display: flex;
+        }
     </style>
 </head>
 <body>
-    <!-- 🔘 معاينة التحميل -->
+    <!-- معاينة التحميل -->
     <div class="preloader" id="preloader">
         <div class="loader"></div>
     </div>
 
-    <!-- 🔘 صندوق اختيار المستخدم عند الدخول -->
+    <!-- صندوق اختيار المستخدم -->
     <div id="userChoiceModal" class="user-choice-modal">
-        <div class="choice-container slide-up">
+        <div class="choice-container">
             <h2 class="choice-title">مرحباً بك في StudentStay! 👋</h2>
             <p class="choice-subtitle">اختر كيف تريد استخدام المنصة</p>
             
             <div class="choice-cards">
                 <!-- بطاقة الطالب -->
-                <div class="choice-card student" data-type="student">
+                <div class="choice-card student" id="studentChoice">
                     <div class="choice-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 data-translate="text.student">طالب / طالبة</h3>
-                    <p data-translate="text.hero">ابحث عن سكن طلابي يناسبك في جميع المدن المغربية</p>
-                    <div class="choice-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
+                    <h3>طالب / طالبة</h3>
+                    <p>ابحث عن سكن طلابي يناسبك في جميع المدن المغربية</p>
                 </div>
                 
                 <!-- بطاقة صاحب العقار -->
-                <div class="choice-card owner" data-type="owner">
+                <div class="choice-card owner" id="ownerChoice">
                     <div class="choice-icon">
                         <i class="fas fa-user-tie"></i>
                     </div>
-                    <h3 data-translate="text.owner">صاحب عقار</h3>
+                    <h3>صاحب عقار</h3>
                     <p>اعرض سكنك للطلاب واحصل على دخل إضافي</p>
-                    <div class="choice-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
                 </div>
             </div>
             
-            <a href="#" class="skip-choice" data-translate="btn.skip">تخطي والاستمرار كزائر</a>
+            <a href="#" class="skip-choice" id="skipChoice">تخطي والاستمرار كزائر</a>
         </div>
     </div>
 
-    <!-- 🌐 شريط اختيار اللغة -->
+    <!-- شريط اللغة -->
     <div class="language-switcher">
-        <button class="lang-btn active" data-lang="ar" data-translate="lang.ar">عربي</button>
-        <button class="lang-btn" data-lang="fr" data-translate="lang.fr">Français</button>
-        <button class="lang-btn" data-lang="en" data-translate="lang.en">English</button>
+        <button class="lang-btn active" onclick="changeLanguage('ar')">عربي</button>
+        <button class="lang-btn" onclick="changeLanguage('fr')">Français</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
     </div>
 
-    <!-- 🔷 1. شريط التنقل -->
+    <!-- التنقل -->
     <nav class="navbar">
         <div class="container">
-            <!-- رابط تخطي للمكفوفين -->
-            <a href="#main-content" class="skip-link" data-translate="nav.skip">انتقل إلى المحتوى الرئيسي</a>
-            
-            <!-- لوغو -->
             <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-home"></i>
                 </div>
                 <div class="logo-text">
                     <span class="logo-main">StudentStay</span>
-                    <span class="logo-sub" data-translate="nav.home">سكن الطلاب</span>
+                    <span class="logo-sub">سكن الطلاب</span>
                 </div>
             </a>
             
-            <!-- عرض نوع المستخدم الحالي -->
-            <div id="currentUserType" class="user-type-display visitor-mode">
+            <div id="currentUserType" class="user-type-display">
                 <i class="fas fa-user"></i>
-                <span data-translate="text.visitor">زائر</span>
-                <i class="fas fa-chevron-down"></i>
+                <span>زائر</span>
             </div>
             
-            <!-- قائمة التنقل -->
             <div class="nav-menu">
-                <a href="#search" class="nav-link active" data-translate="nav.search">
+                <a href="#search" class="nav-link active">
                     <i class="fas fa-search"></i>
                     <span>بحث</span>
                 </a>
-                <a href="#add-property" class="nav-link" data-translate="nav.add">
+                <a href="#add-property" class="nav-link">
                     <i class="fas fa-plus-circle"></i>
                     <span>إضافة</span>
                 </a>
-                <a href="#help" class="nav-link" data-translate="nav.help">
+                <a href="#help" class="nav-link">
                     <i class="fas fa-question-circle"></i>
                     <span>مساعدة</span>
                 </a>
-                <a href="login.html" class="login-btn" id="loginButton" data-translate="nav.login">
+                <a href="#" class="login-btn">
                     <i class="fas fa-user"></i>
                     <span>دخول</span>
                 </a>
@@ -167,60 +184,52 @@
         </div>
     </nav>
 
-    <!-- 🌟 2. قسم الهيرو -->
-    <main id="main-content">
+    <!-- الهيرو -->
+    <main>
         <section class="hero-section" id="search">
             <div class="container">
                 <h1 class="hero-title">
-                    <span data-translate="title.search">ابحث عن</span>
-                    <span class="highlight" data-translate="text.property">سكن طلابي</span>
-                    <span data-translate="text.fitsYou">يناسبك</span>
+                    ابحث عن <span class="highlight">سكن طلابي</span> يناسبك
                 </h1>
-                <p class="hero-subtitle" data-translate="text.hero">
+                <p class="hero-subtitle">
                     أكثر من 1000 سكن متاح في 12 مدينة مغربية
                 </p>
                 
-                <!-- 🔎 صندوق البحث -->
+                <!-- صندوق البحث -->
                 <div class="search-box">
                     <div class="search-inputs">
                         <div class="input-group">
-                            <label for="cityInput" class="sr-only" data-translate="text.city">المدينة أو الجامعة</label>
                             <i class="fas fa-map-marker-alt"></i>
-                            <input type="text" id="cityInput" placeholder="المدينة أو الجامعة" 
-                                   data-translate="placeholder.city">
+                            <input type="text" placeholder="المدينة أو الجامعة">
                         </div>
                         
                         <div class="input-group">
-                            <label for="propertyType" class="sr-only" data-translate="text.propertyType">نوع السكن</label>
                             <i class="fas fa-home"></i>
-                            <select id="propertyType" data-translate="placeholder.propertyType">
-                                <option value="" data-translate="option.selectType">نوع السكن</option>
-                                <option value="private" data-translate="option.privateRoom">غرفة خاصة</option>
-                                <option value="apartment" data-translate="option.apartment">شقة كاملة</option>
-                                <option value="studio" data-translate="option.studio">استوديو</option>
-                                <option value="shared" data-translate="option.shared">سكن مشترك</option>
+                            <select>
+                                <option value="">نوع السكن</option>
+                                <option value="private">غرفة خاصة</option>
+                                <option value="apartment">شقة كاملة</option>
+                                <option value="studio">استوديو</option>
+                                <option value="shared">سكن مشترك</option>
                             </select>
                         </div>
                         
                         <div class="input-group">
-                            <label for="arrivalDate" class="sr-only" data-translate="text.arrivalDate">تاريخ الوصول</label>
                             <i class="fas fa-calendar-alt"></i>
-                            <input type="month" id="arrivalDate" placeholder="تاريخ الوصول">
+                            <input type="month" placeholder="تاريخ الوصول">
                         </div>
                     </div>
                     
                     <!-- شريط الميزانية -->
                     <div class="budget-slider-container">
-                        <label for="budgetSlider" class="budget-label">
+                        <div class="budget-label">
                             <i class="fas fa-wallet"></i>
-                            <span data-translate="text.budget">الميزانية:</span>
-                            <strong id="budgetValue">1500 درهم</strong>
-                        </label>
-                        <input type="range" id="budgetSlider" min="500" max="3000" value="1500" 
-                               class="budget-slider" aria-label="اختر ميزانيتك">
+                            <span>الميزانية: <strong id="budgetValue">1500 درهم</strong></span>
+                        </div>
+                        <input type="range" id="budgetSlider" min="500" max="3000" value="1500" class="budget-slider">
                     </div>
                     
-                    <button class="search-button" id="searchButton" data-translate="btn.search">
+                    <button class="search-button">
                         <i class="fas fa-search"></i>
                         بحث عن سكن
                     </button>
@@ -228,43 +237,105 @@
             </div>
         </section>
 
-        <!-- 🏠 3. قسم السكن المتاح -->
+        <!-- السكن المتاح -->
         <section class="properties-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-translate="title.available">
-                        <i class="fas fa-home"></i>
-                        سكن متاح للطلاب
-                    </h2>
-                    <div class="section-filters">
-                        <div class="filter-buttons">
-                            <button class="filter-btn active" data-filter="all" data-translate="filter.all">الكل</button>
-                            <button class="filter-btn" data-filter="casablanca" data-translate="city.casablanca">الدار البيضاء</button>
-                            <button class="filter-btn" data-filter="rabat" data-translate="city.rabat">الرباط</button>
-                            <button class="filter-btn" data-filter="marrakech" data-translate="city.marrakech">مراكش</button>
+                <h2 class="section-title">
+                    <i class="fas fa-home"></i>
+                    سكن متاح للطلاب
+                </h2>
+                
+                <div class="properties-grid">
+                    <!-- عقار 1 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge premium">مميز</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">شقة طلابية - الدار البيضاء</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                حي المعاريف، قرب الجامعة
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 غرف</span>
+                                <span><i class="fas fa-bath"></i> 1 حمام</span>
+                                <span><i class="fas fa-wifi"></i> واي فاي</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>1,800 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عقار 2 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge discount">خصم 20%</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">استوديو - الرباط</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                حي أكدال، قرب المترو
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 غرفة</span>
+                                <span><i class="fas fa-bath"></i> 1 حمام</span>
+                                <span><i class="fas fa-utensils"></i> مطبخ</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>1,200 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عقار 3 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge new">جديد</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">غرفة - مراكش</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                وسط المدينة، قرب المواصلات
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 غرفة</span>
+                                <span><i class="fas fa-bath"></i> حمام مشترك</span>
+                                <span><i class="fas fa-user-friends"></i> سكن مشترك</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>900 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- شبكة العقارات -->
-                <div class="properties-grid" id="propertiesGrid">
-                    <!-- سيتم ملؤها بواسطة JavaScript -->
-                    <div class="loading-properties">
-                        <div class="loading-spinner"></div>
-                        <p data-translate="message.loading">جاري تحميل العقارات...</p>
-                    </div>
-                </div>
-                
-                <!-- عد النتائج -->
-                <div class="results-info">
-                    <p data-translate="text.showing">عرض</p>
-                    <strong id="resultsCount">0</strong>
-                    <p data-translate="text.results">نتيجة</p>
-                </div>
-                
-                <!-- زر عرض المزيد -->
                 <div class="show-more-container">
-                    <button class="show-more-btn" id="showMoreBtn" data-translate="btn.more">
+                    <button class="show-more-btn">
                         <i class="fas fa-arrow-down"></i>
                         عرض المزيد من السكن
                     </button>
@@ -272,88 +343,59 @@
             </div>
         </section>
 
-        <!-- ➕ 4. قسم إضافة سكن -->
+        <!-- إضافة سكن -->
         <section class="add-section" id="add-property">
             <div class="container">
                 <div class="add-container">
-                    <h2 class="section-title" data-translate="title.add">
+                    <h2 class="section-title">
                         <i class="fas fa-plus-circle"></i>
                         هل تملك سكن للطلاب؟
                     </h2>
-                    <p class="section-subtitle" data-translate="text.addProperty">
+                    <p class="section-subtitle">
                         عُرض سكنك على آلاف الطلاب واحصل على دخل إضافي
                     </p>
                     
-                    <form class="add-form" id="addPropertyForm">
+                    <form class="add-form">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="fullAddress" data-translate="form.address">
-                                    <i class="fas fa-map-marker-alt"></i> العنوان الكامل
-                                </label>
-                                <input type="text" id="fullAddress" name="address" 
-                                       placeholder="الحي، الشارع، رقم المنزل" required
-                                       data-translate="placeholder.address">
+                                <label><i class="fas fa-map-marker-alt"></i> العنوان الكامل</label>
+                                <input type="text" placeholder="الحي، الشارع، رقم المنزل" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="propertyPrice" data-translate="form.price">
-                                    <i class="fas fa-tag"></i> السعر الشهري (درهم)
-                                </label>
-                                <input type="number" id="propertyPrice" name="price" 
-                                       placeholder="مثال: 1500" min="500" max="5000" required
-                                       data-translate="placeholder.price">
+                                <label><i class="fas fa-tag"></i> السعر الشهري (درهم)</label>
+                                <input type="number" placeholder="مثال: 1500" min="500" max="5000" required>
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="roomsCount" data-translate="form.rooms">
-                                    <i class="fas fa-door-open"></i> عدد الغرف
-                                </label>
-                                <select id="roomsCount" name="rooms" required>
-                                    <option value="" data-translate="option.selectRooms">اختر عدد الغرف</option>
-                                    <option value="1" data-translate="option.oneRoom">1 غرفة</option>
-                                    <option value="2" data-translate="option.twoRooms">2 غرف</option>
-                                    <option value="3" data-translate="option.threeRooms">3 غرف</option>
-                                    <option value="4+" data-translate="option.fourPlusRooms">4 غرف أو أكثر</option>
+                                <label><i class="fas fa-door-open"></i> عدد الغرف</label>
+                                <select required>
+                                    <option value="">اختر عدد الغرف</option>
+                                    <option value="1">1 غرفة</option>
+                                    <option value="2">2 غرف</option>
+                                    <option value="3">3 غرف</option>
+                                    <option value="4+">4 غرف أو أكثر</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="phoneNumber" data-translate="form.phone">
-                                    <i class="fas fa-phone"></i> رقم الهاتف
-                                </label>
-                                <input type="tel" id="phoneNumber" name="phone" 
-                                       placeholder="مثال: 0612345678" required
-                                       data-translate="placeholder.phone">
+                                <label><i class="fas fa-phone"></i> رقم الهاتف</label>
+                                <input type="tel" placeholder="مثال: 0612345678" required>
                             </div>
                         </div>
                         
                         <div class="form-group full-width">
-                            <label data-translate="form.images">
-                                <i class="fas fa-image"></i> صور السكن
-                            </label>
-                            <div class="file-upload-area" id="fileUploadArea">
+                            <label><i class="fas fa-image"></i> صور السكن</label>
+                            <div class="file-upload-area">
                                 <i class="fas fa-cloud-upload-alt"></i>
-                                <p data-translate="text.uploadInstructions">
-                                    اسحب وأفلت الصور هنا أو
-                                    <span data-translate="text.clickToUpload">انقر للاختيار</span>
-                                </p>
-                                <input type="file" id="propertyImages" multiple accept="image/*">
+                                <p>اسحب وأفلت الصور هنا أو <span>انقر للاختيار</span></p>
+                                <input type="file" multiple accept="image/*">
                             </div>
-                            <div class="file-preview" id="filePreview"></div>
                         </div>
                         
-                        <div class="form-group full-width">
-                            <label for="propertyDescription" data-translate="form.description">
-                                <i class="fas fa-edit"></i> وصف السكن
-                            </label>
-                            <textarea id="propertyDescription" name="description" 
-                                      rows="4" placeholder="صف سكنك بالتفصيل..."
-                                      data-translate="placeholder.description"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="publish-btn" id="publishBtn" data-translate="btn.publish">
+                        <button type="submit" class="publish-btn">
                             <i class="fas fa-paper-plane"></i>
                             نشر الإعلان
                         </button>
@@ -362,231 +404,300 @@
             </div>
         </section>
 
-        <!-- ✨ 5. قسم المميزات -->
+        <!-- المميزات -->
         <section class="features-section">
             <div class="container">
-                <h2 class="section-title" data-translate="title.features">
-                    لماذا تختار StudentStay؟
-                </h2>
+                <h2 class="section-title">لماذا تختار StudentStay؟</h2>
                 
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3 data-translate="feature.safety">آمن وموثوق</h3>
-                        <p data-translate="feature.safetyDesc">جميع العقارات والمالكين موثقون</p>
+                        <h3>آمن وموثوق</h3>
+                        <p>جميع العقارات والمالكين موثقون</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-search"></i>
                         </div>
-                        <h3 data-translate="feature.search">بحث سهل</h3>
-                        <p data-translate="feature.searchDesc">ابحث حسب المدينة، السعر، والمواصفات</p>
+                        <h3>بحث سهل</h3>
+                        <p>ابحث حسب المدينة، السعر، والمواصفات</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-comments"></i>
                         </div>
-                        <h3 data-translate="feature.communication">تواصل مباشر</h3>
-                        <p data-translate="feature.communicationDesc">تواصل مباشر مع الملاك والطلاب</p>
+                        <h3>تواصل مباشر</h3>
+                        <p>تواصل مباشر مع الملاك والطلاب</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-headset"></i>
                         </div>
-                        <h3 data-translate="feature.support">دعم 24/7</h3>
-                        <p data-translate="feature.supportDesc">فريق الدعم جاهز لمساعدتك</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 📱 6. قسم التطبيق -->
-        <section class="app-section">
-            <div class="container">
-                <div class="app-content">
-                    <div class="app-info">
-                        <h2 data-translate="title.app">حمل تطبيقنا</h2>
-                        <p data-translate="text.appDesc">ابحث عن سكن وأضف عقاراتك من أي مكان</p>
-                        
-                        <div class="app-buttons">
-                            <a href="#" class="app-btn play-store" aria-label="تحميل من Google Play">
-                                <i class="fab fa-google-play"></i>
-                                <div>
-                                    <span data-translate="text.getItOn">احصل عليه على</span>
-                                    <strong>Google Play</strong>
-                                </div>
-                            </a>
-                            
-                            <a href="#" class="app-btn app-store" aria-label="تحميل من App Store">
-                                <i class="fab fa-apple"></i>
-                                <div>
-                                    <span data-translate="text.downloadOn">حمل من</span>
-                                    <strong>App Store</strong>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="app-image">
-                        <!-- صورة رمزية للتطبيق -->
-                        <div class="phone-mockup">
-                            <div class="phone-screen"></div>
-                        </div>
+                        <h3>دعم 24/7</h3>
+                        <p>فريق الدعم جاهز لمساعدتك</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 🏁 7. التذييل -->
+    <!-- الفوتر -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
-                <!-- معلومات المنصة -->
                 <div class="footer-section">
                     <div class="footer-logo">
                         <i class="fas fa-home"></i>
                         <div>
                             <h3>StudentStay</h3>
-                            <p data-translate="footer.tagline">منصة سكن الطلاب</p>
+                            <p>منصة سكن الطلاب</p>
                         </div>
                     </div>
-                    <p class="footer-about" data-translate="footer.about">
+                    <p class="footer-about">
                         نوفر سكن طلابي آمن ومريح في جميع المدن المغربية
                     </p>
-                    
-                    <div class="social-links">
-                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 
-                <!-- روابط سريعة -->
                 <div class="footer-section">
-                    <h4 data-translate="footer.quickLinks">روابط سريعة</h4>
-                    <a href="#search" data-translate="nav.search">البحث عن سكن</a>
-                    <a href="#add-property" data-translate="nav.add">إضافة إعلان</a>
-                    <a href="#help" data-translate="nav.help">المساعدة</a>
-                    <a href="#" data-translate="footer.terms">الشروط والأحكام</a>
-                    <a href="#" data-translate="footer.privacy">سياسة الخصوصية</a>
+                    <h4>روابط سريعة</h4>
+                    <a href="#search">البحث عن سكن</a>
+                    <a href="#add-property">إضافة إعلان</a>
+                    <a href="#help">المساعدة</a>
+                    <a href="#">الشروط والأحكام</a>
                 </div>
                 
-                <!-- المدن -->
                 <div class="footer-section">
-                    <h4 data-translate="footer.cities">المدن الرئيسية</h4>
-                    <a href="?city=الدار البيضاء" data-translate="city.casablanca">الدار البيضاء</a>
-                    <a href="?city=الرباط" data-translate="city.rabat">الرباط</a>
-                    <a href="?city=مراكش" data-translate="city.marrakech">مراكش</a>
-                    <a href="?city=فاس" data-translate="city.fes">فاس</a>
-                    <a href="?city=طنجة" data-translate="city.tangier">طنجة</a>
-                    <a href="?city=مكناس" data-translate="city.meknes">مكناس</a>
-                </div>
-                
-                <!-- اتصل بنا -->
-                <div class="footer-section">
-                    <h4 data-translate="footer.contact">اتصل بنا</h4>
-                    <p><i class="fas fa-phone"></i> <span data-translate="footer.phone">0522-123456</span></p>
-                    <p><i class="fas fa-envelope"></i> <span data-translate="footer.email">info@studentstay.ma</span></p>
-                    <p><i class="fas fa-map-marker-alt"></i> <span data-translate="footer.location">المغرب</span></p>
-                    
-                    <form class="newsletter-form">
-                        <label for="newsletterEmail" data-translate="footer.newsletter">اشترك في نشرتنا</label>
-                        <div class="newsletter-input">
-                            <input type="email" id="newsletterEmail" placeholder="بريدك الإلكتروني"
-                                   data-translate="placeholder.email">
-                            <button type="submit" aria-label="اشترك">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
+                    <h4>اتصل بنا</h4>
+                    <p><i class="fas fa-phone"></i> 0522-123456</p>
+                    <p><i class="fas fa-envelope"></i> info@studentstay.ma</p>
+                    <p><i class="fas fa-map-marker-alt"></i> المغرب</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p data-translate="footer.copyright">© 2024 StudentStay. جميع الحقوق محفوظة</p>
-                <div class="footer-links">
-                    <a href="#" data-translate="footer.sitemap">خريطة الموقع</a>
-                    <span>|</span>
-                    <a href="#" data-translate="footer.accessibility">إمكانية الوصول</a>
-                    <span>|</span>
-                    <a href="#" data-translate="footer.cookies">الكوكيز</a>
-                </div>
+                <p>© 2024 StudentStay. جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
 
-    <!-- 🔼 زر العودة للأعلى -->
-    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- 🔔 نافذة الإشعارات -->
-    <div class="notifications-center" id="notificationsCenter">
-        <div class="notifications-header">
-            <h3 data-translate="notifications.title">الإشعارات</h3>
-            <button class="mark-all-read" data-translate="notifications.markAllRead">تعليم الكل كمقروء</button>
-            <button class="close-notifications">&times;</button>
-        </div>
-        <div class="notifications-list" id="notificationsList">
-            <!-- سيتم ملؤها بواسطة JavaScript -->
-        </div>
-    </div>
-
-    <!-- 📄 ملفات JavaScript -->
-    <!-- الأساسيات -->
-    <script src="js/utils.js"></script>
-    <script src="js/main.js"></script>
-    
-    <!-- الوظائف الأساسية -->
-    <script src="js/auth.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="js/properties.js"></script>
-    
-    <!-- الوظائف المتقدمة -->
-    <script src="js/notifications.js"></script>
-    <script src="js/language.js"></script>
-    
-    <!-- ملاحظة: ملفات map.js و api.js و dashboard.js لا نحتاجهم في الصفحة الرئيسية -->
-    <!-- سيتم تحميلهم عند الحاجة في صفحات أخرى -->
-    
-    <!-- تهيئة الصفحة -->
+    <!-- JavaScript الكامل مدمج هنا -->
     <script>
-        // إخفاء معاينة التحميل
-        window.addEventListener('load', function() {
+        // ===== الحل الكامل لصندوق الاختيار =====
+        
+        // 1. عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 StudentStay - تم تحميل الصفحة');
+            
+            // إخفاء معاينة التحميل
             const preloader = document.getElementById('preloader');
             if (preloader) {
-                preloader.style.opacity = '0';
                 setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 1000);
             }
-        });
-        
-        // تهيئة عند تحميل DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('StudentStay - تم تحميل الصفحة الرئيسية');
             
-            // تهيئة العقارات
-            if (typeof propertyManager !== 'undefined') {
-                propertyManager.renderProperties();
-            }
+            // إدارة صندوق الاختيار
+            initUserChoice();
+            
+            // إعداد الأحداث
+            setupEvents();
             
             // زر العودة للأعلى
+            setupBackToTop();
+            
+            // شريط الميزانية
+            setupBudgetSlider();
+        });
+        
+        // 2. تهيئة صندوق الاختيار
+        function initUserChoice() {
+            const modal = document.getElementById('userChoiceModal');
+            const userChoice = localStorage.getItem('userType');
+            
+            console.log('💾 الاختيار السابق:', userChoice || 'لا يوجد');
+            
+            if (userChoice) {
+                // إخفاء الصندوق إذا كان هناك اختيار سابق
+                modal.style.display = 'none';
+                updateUserDisplay(userChoice);
+            } else {
+                // عرض الصندوق لأول مرة
+                modal.style.display = 'flex';
+                modal.classList.add('show');
+            }
+        }
+        
+        // 3. تحديث عرض نوع المستخدم
+        function updateUserDisplay(type) {
+            const display = document.getElementById('currentUserType');
+            if (!display) return;
+            
+            // تنظيف الأنماط القديمة
+            display.className = 'user-type-display';
+            
+            // إضافة النمط الجديد
+            if (type === 'student') {
+                display.classList.add('student-mode');
+                display.innerHTML = '<i class="fas fa-graduation-cap"></i><span>وضع الطالب</span>';
+            } else if (type === 'owner') {
+                display.classList.add('owner-mode');
+                display.innerHTML = '<i class="fas fa-user-tie"></i><span>وضع صاحب العقار</span>';
+            } else {
+                display.classList.add('visitor-mode');
+                display.innerHTML = '<i class="fas fa-user"></i><span>زائر</span>';
+            }
+            
+            // إضافة حدث النقر لتغيير الوضع
+            display.onclick = function() {
+                localStorage.removeItem('userType');
+                const modal = document.getElementById('userChoiceModal');
+                modal.style.display = 'flex';
+                modal.classList.add('show');
+            };
+        }
+        
+        // 4. اختيار نوع المستخدم
+        function selectUserType(type) {
+            console.log('✅ تم الاختيار:', type);
+            
+            // حفظ الاختيار
+            localStorage.setItem('userType', type);
+            
+            // إخفاء الصندوق
+            const modal = document.getElementById('userChoiceModal');
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+            
+            // تحديث العرض
+            updateUserDisplay(type);
+            
+            // رسالة ترحيب
+            showNotification(getWelcomeMessage(type));
+        }
+        
+        // 5. الحصول على رسالة الترحيب
+        function getWelcomeMessage(type) {
+            if (type === 'student') {
+                return '🎓 مرحباً بك كطالب! يمكنك الآن البحث عن سكن يناسبك.';
+            } else if (type === 'owner') {
+                return '👔 مرحباً بك كصاحب عقار! يمكنك الآن إضافة سكنك للطلاب.';
+            } else {
+                return '👋 مرحباً بك كزائر! يمكنك تصفح المنصة.';
+            }
+        }
+        
+        // 6. إعداد الأحداث
+        function setupEvents() {
+            // اختيار الطالب
+            const studentChoice = document.getElementById('studentChoice');
+            if (studentChoice) {
+                studentChoice.addEventListener('click', function() {
+                    selectUserType('student');
+                });
+            }
+            
+            // اختيار صاحب العقار
+            const ownerChoice = document.getElementById('ownerChoice');
+            if (ownerChoice) {
+                ownerChoice.addEventListener('click', function() {
+                    selectUserType('owner');
+                });
+            }
+            
+            // تخطي (زائر)
+            const skipChoice = document.getElementById('skipChoice');
+            if (skipChoice) {
+                skipChoice.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    selectUserType('visitor');
+                });
+            }
+            
+            // أزرار اللغة
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة النشط من الجميع
+                    langButtons.forEach(b => b.classList.remove('active'));
+                    // إضافة النشط للزر المضغوط
+                    this.classList.add('active');
+                    
+                    // إشعار تغيير اللغة
+                    const lang = this.textContent.includes('Français') ? 'الفرنسية' : 
+                                 this.textContent.includes('English') ? 'الإنجليزية' : 'العربية';
+                    showNotification(`تم التبديل إلى اللغة ${lang}`);
+                });
+            });
+            
+            // زر البحث
+            const searchButton = document.querySelector('.search-button');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    showNotification('🔍 جاري البحث عن سكن...');
+                });
+            }
+            
+            // أزرار عرض التفاصيل
+            const viewButtons = document.querySelectorAll('.view-btn');
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    showNotification('جاري تحميل تفاصيل السكن...');
+                });
+            });
+            
+            // زر عرض المزيد
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            if (showMoreBtn) {
+                showMoreBtn.addEventListener('click', function() {
+                    showNotification('🔄 جاري تحميل المزيد من السكن...');
+                });
+            }
+            
+            // زر نشر الإعلان
+            const publishBtn = document.querySelector('.publish-btn');
+            if (publishBtn) {
+                publishBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showNotification('📤 جاري نشر إعلانك...');
+                });
+            }
+        }
+        
+        // 7. إعداد شريط الميزانية
+        function setupBudgetSlider() {
+            const slider = document.getElementById('budgetSlider');
+            const value = document.getElementById('budgetValue');
+            
+            if (slider && value) {
+                slider.addEventListener('input', function() {
+                    value.textContent = `${this.value} درهم`;
+                });
+            }
+        }
+        
+        // 8. إعداد زر العودة للأعلى
+        function setupBackToTop() {
             const backToTop = document.getElementById('backToTop');
+            
             if (backToTop) {
                 window.addEventListener('scroll', function() {
                     if (window.scrollY > 300) {
-                        backToTop.classList.add('show');
+                        backToTop.style.display = 'flex';
                     } else {
-                        backToTop.classList.remove('show');
+                        backToTop.style.display = 'none';
                     }
                 });
                 
@@ -594,29 +705,57 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
-            
-            // إشعارات تجريبية بعد 3 ثواني
-            setTimeout(() => {
-                if (typeof notificationSystem !== 'undefined') {
-                    notificationSystem.createSampleNotifications();
-                }
-            }, 3000);
-            
-            // تحديث عدد النتائج
-            if (typeof propertyManager !== 'undefined') {
-                const count = propertyManager.properties.length;
-                const countElement = document.getElementById('resultsCount');
-                if (countElement) {
-                    countElement.textContent = count;
-                }
-            }
-        });
+        }
         
-        // معالجة أخطاء تحميل الملفات
-        window.addEventListener('error', function(e) {
-            console.warn('خطأ في تحميل الملف:', e.filename);
-            // يمكنك إضافة منطق لتحميل بديل هنا
-        });
+        // 9. عرض الإشعارات
+        function showNotification(message) {
+            // إنشاء العنصر
+            const notification = document.createElement('div');
+            notification.className = 'quick-notification';
+            
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span>${message}</span>
+                    <button class="notification-close">&times;</button>
+                </div>
+            `;
+            
+            // زر الإغلاق
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.addEventListener('click', function() {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            // إضافة للصفحة
+            document.body.appendChild(notification);
+            
+            // إزالة تلقائية بعد 5 ثواني
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // 10. تغيير اللغة (وظيفة مساعدة)
+        function changeLanguage(lang) {
+            let message;
+            if (lang === 'ar') {
+                message = '✅ تم التبديل إلى اللغة العربية';
+            } else if (lang === 'fr') {
+                message = '✅ Langue changée en français';
+            } else {
+                message = '✅ Language switched to English';
+            }
+            showNotification(message);
+        }
+        
+        // 11. جعل الدوال متاحة عالمياً
+        window.selectUserType = selectUserType;
+        window.skipChoice = function() { selectUserType('visitor'); };
+        window.changeLanguage = changeLanguage;
     </script>
 </body>
-    </html>
+                            </html>
