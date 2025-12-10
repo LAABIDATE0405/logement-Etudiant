@@ -1,756 +1,761 @@
-/* ===== DASHBOARD STYLES ===== */
-
-/* Dashboard Layout */
-.dashboard {
-    display: flex;
-    min-height: 100vh;
-    background: #f5f7fb;
-}
-
-/* Sidebar */
-.dashboard-sidebar {
-    width: 260px;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: white;
-    position: fixed;
-    height: 100vh;
-    overflow-y: auto;
-    transition: all 0.3s ease;
-    z-index: 100;
-    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
-}
-
-.sidebar-header {
-    padding: 25px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-}
-
-.sidebar-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.sidebar-logo i {
-    font-size: 2rem;
-    color: #4361ee;
-}
-
-.sidebar-logo h2 {
-    font-size: 1.4rem;
-    margin: 0;
-    background: linear-gradient(135deg, #4361ee, #7209b7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.sidebar-user {
-    text-align: center;
-}
-
-.user-avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    border: 3px solid #4361ee;
-    padding: 3px;
-    background: white;
-}
-
-.user-avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.user-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.user-info p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
-    margin: 0;
-}
-
-/* Sidebar Navigation */
-.sidebar-nav {
-    padding: 20px 0;
-}
-
-.nav-item {
-    margin-bottom: 5px;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 25px;
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-right: 3px solid transparent;
-    font-size: 1rem;
-}
-
-.nav-link:hover {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border-right-color: #4361ee;
-}
-
-.nav-link.active {
-    background: rgba(67, 97, 238, 0.2);
-    color: white;
-    border-right-color: #4361ee;
-}
-
-.nav-link i {
-    font-size: 1.2rem;
-    width: 24px;
-    text-align: center;
-}
-
-.nav-badge {
-    margin-left: auto;
-    background: #4361ee;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* Main Content */
-.dashboard-main {
-    flex: 1;
-    margin-left: 260px;
-    padding: 20px;
-    transition: all 0.3s ease;
-}
-
-/* Top Bar */
-.dashboard-topbar {
-    background: white;
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.topbar-left h1 {
-    font-size: 1.8rem;
-    color: #212529;
-    margin: 0;
-}
-
-.topbar-left p {
-    color: #6c757d;
-    margin: 5px 0 0;
-    font-size: 0.95rem;
-}
-
-.topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.search-box {
-    position: relative;
-}
-
-.search-box input {
-    padding: 10px 15px 10px 40px;
-    border: 2px solid #e9ecef;
-    border-radius: 25px;
-    width: 250px;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-
-.search-box input:focus {
-    outline: none;
-    border-color: #4361ee;
-    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-}
-
-.search-box i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-}
-
-.notifications {
-    position: relative;
-}
-
-.notifications i {
-    font-size: 1.3rem;
-    color: #6c757d;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.notifications i:hover {
-    color: #4361ee;
-}
-
-.notification-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ef233c;
-    color: white;
-    font-size: 0.7rem;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-menu {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.user-menu img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #4361ee;
-}
-
-/* Stats Cards */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.stat-card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    border-left: 4px solid #4361ee;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.stat-card.properties {
-    border-left-color: #4361ee;
-}
-
-.stat-card.requests {
-    border-left-color: #06d6a0;
-}
-
-.stat-card.messages {
-    border-left-color: #7209b7;
-}
-
-.stat-card.income {
-    border-left-color: #ffd166;
-}
-
-.stat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.stat-header i {
-    font-size: 1.8rem;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(67, 97, 238, 0.1);
-    color: #4361ee;
-}
-
-.stat-card.properties .stat-header i {
-    background: rgba(67, 97, 238, 0.1);
-    color: #4361ee;
-}
-
-.stat-card.requests .stat-header i {
-    background: rgba(6, 214, 160, 0.1);
-    color: #06d6a0;
-}
-
-.stat-card.messages .stat-header i {
-    background: rgba(114, 9, 183, 0.1);
-    color: #7209b7;
-}
-
-.stat-card.income .stat-header i {
-    background: rgba(255, 209, 102, 0.1);
-    color: #ffd166;
-}
-
-.stat-number {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #212529;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    color: #6c757d;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-}
-
-.stat-change {
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.stat-change.positive {
-    color: #06d6a0;
-}
-
-.stat-change.negative {
-    color: #ef233c;
-}
-
-/* Dashboard Sections */
-.dashboard-section {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    padding: 30px;
-    margin-bottom: 30px;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #f1f3f5;
-}
-
-.section-header h2 {
-    font-size: 1.5rem;
-    color: #212529;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.section-header h2 i {
-    color: #4361ee;
-}
-
-.view-all {
-    color: #4361ee;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-}
-
-.view-all:hover {
-    color: #3a56d4;
-    gap: 8px;
-}
-
-/* Properties Table */
-.properties-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.properties-table th {
-    text-align: right;
-    padding: 15px;
-    background: #f8f9fa;
-    color: #6c757d;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.properties-table td {
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-    vertical-align: middle;
-}
-
-.property-info-cell {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.property-thumb {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.property-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.property-details h4 {
-    margin: 0 0 5px;
-    font-size: 1.05rem;
-    color: #212529;
-}
-
-.property-details p {
-    margin: 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.status-badge {
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.status-active {
-    background: rgba(6, 214, 160, 0.1);
-    color: #06d6a0;
-}
-
-.status-pending {
-    background: rgba(255, 209, 102, 0.1);
-    color: #ffd166;
-}
-
-.status-inactive {
-    background: rgba(108, 117, 125, 0.1);
-    color: #6c757d;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.action-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-}
-
-.btn-view {
-    background: rgba(67, 97, 238, 0.1);
-    color: #4361ee;
-}
-
-.btn-edit {
-    background: rgba(255, 209, 102, 0.1);
-    color: #ffd166;
-}
-
-.btn-delete {
-    background: rgba(239, 35, 60, 0.1);
-    color: #ef233c;
-}
-
-.action-btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Recent Activity */
-.activity-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.activity-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #f8f9fa;
-    transition: all 0.3s ease;
-}
-
-.activity-item:hover {
-    background: #e9ecef;
-}
-
-.activity-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.2rem;
-}
-
-.activity-icon.new-property {
-    background: rgba(67, 97, 238, 0.1);
-    color: #4361ee;
-}
-
-.activity-icon.booking {
-    background: rgba(6, 214, 160, 0.1);
-    color: #06d6a0;
-}
-
-.activity-icon.message {
-    background: rgba(114, 9, 183, 0.1);
-    color: #7209b7;
-}
-
-.activity-content h4 {
-    margin: 0 0 5px;
-    font-size: 1rem;
-    color: #212529;
-}
-
-.activity-content p {
-    margin: 0 0 5px;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.activity-time {
-    color: #adb5bd;
-    font-size: 0.85rem;
-}
-
-/* Quick Actions */
-.quick-actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.quick-action-btn {
-    background: white;
-    border: 2px solid #e9ecef;
-    border-radius: 15px;
-    padding: 25px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.quick-action-btn:hover {
-    border-color: #4361ee;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(67, 97, 238, 0.1);
-}
-
-.quick-action-btn i {
-    font-size: 2.5rem;
-    color: #4361ee;
-    transition: all 0.3s ease;
-}
-
-.quick-action-btn:hover i {
-    transform: scale(1.1);
-}
-
-.quick-action-btn h4 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #212529;
-}
-
-.quick-action-btn p {
-    margin: 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-/* Dashboard Footer */
-.dashboard-footer {
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #e9ecef;
-    text-align: center;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-/* Responsive Dashboard */
-@media (max-width: 992px) {
-    .dashboard-sidebar {
-        width: 220px;
-        transform: translateX(-100%);
-    }
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentStay - سكن الطلاب</title>
     
-    .dashboard-sidebar.active {
-        transform: translateX(0);
-    }
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .dashboard-main {
-        margin-left: 0;
-    }
+    <!-- خط عربي -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    .sidebar-toggle {
-        display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 101;
-        background: #4361ee;
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 1.2rem;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-    }
+    <!-- ملفات CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
     
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .search-box input {
-        width: 200px;
-    }
-}
+    <style>
+        /* معاينة التحميل */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* إشعارات سريعة */
+        .quick-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #06d6a0;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            max-width: 350px;
+            font-weight: 500;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* إصلاح صندوق الاختيار */
+        .user-choice-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .user-choice-modal.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- معاينة التحميل -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
 
-@media (max-width: 768px) {
-    .dashboard-topbar {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .topbar-right {
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .properties-table {
-        display: block;
-        overflow-x: auto;
-    }
-    
-    .quick-actions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+    <!-- صندوق اختيار المستخدم -->
+    <div id="userChoiceModal" class="user-choice-modal">
+        <div class="choice-container">
+            <h2 class="choice-title">مرحباً بك في StudentStay! 👋</h2>
+            <p class="choice-subtitle">اختر كيف تريد استخدام المنصة</p>
+            
+            <div class="choice-cards">
+                <!-- بطاقة الطالب -->
+                <div class="choice-card student" id="studentChoice">
+                    <div class="choice-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>طالب / طالبة</h3>
+                    <p>ابحث عن سكن طلابي يناسبك في جميع المدن المغربية</p>
+                </div>
+                
+                <!-- بطاقة صاحب العقار -->
+                <div class="choice-card owner" id="ownerChoice">
+                    <div class="choice-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>صاحب عقار</h3>
+                    <p>اعرض سكنك للطلاب واحصل على دخل إضافي</p>
+                </div>
+            </div>
+            
+            <a href="#" class="skip-choice" id="skipChoice">تخطي والاستمرار كزائر</a>
+        </div>
+    </div>
 
-@media (max-width: 480px) {
-    .quick-actions-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    .search-box input {
-        width: 150px;
-    }
-}
+    <!-- شريط اللغة -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="changeLanguage('ar')">عربي</button>
+        <button class="lang-btn" onclick="changeLanguage('fr')">Français</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+    </div>
 
-/* Dark Mode for Dashboard */
-.dashboard.dark-mode {
-    background: #121212;
-}
+    <!-- التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">StudentStay</span>
+                    <span class="logo-sub">سكن الطلاب</span>
+                </div>
+            </a>
+            
+            <div id="currentUserType" class="user-type-display">
+                <i class="fas fa-user"></i>
+                <span>زائر</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#search" class="nav-link active">
+                    <i class="fas fa-search"></i>
+                    <span>بحث</span>
+                </a>
+                <a href="#add-property" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>إضافة</span>
+                </a>
+                <a href="#help" class="nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>مساعدة</span>
+                </a>
+                <a href="#" class="login-btn">
+                    <i class="fas fa-user"></i>
+                    <span>دخول</span>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-.dashboard.dark-mode .dashboard-main {
-    background: #121212;
-}
+    <!-- الهيرو -->
+    <main>
+        <section class="hero-section" id="search">
+            <div class="container">
+                <h1 class="hero-title">
+                    ابحث عن <span class="highlight">سكن طلابي</span> يناسبك
+                </h1>
+                <p class="hero-subtitle">
+                    أكثر من 1000 سكن متاح في 12 مدينة مغربية
+                </p>
+                
+                <!-- صندوق البحث -->
+                <div class="search-box">
+                    <div class="search-inputs">
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" placeholder="المدينة أو الجامعة">
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-home"></i>
+                            <select>
+                                <option value="">نوع السكن</option>
+                                <option value="private">غرفة خاصة</option>
+                                <option value="apartment">شقة كاملة</option>
+                                <option value="studio">استوديو</option>
+                                <option value="shared">سكن مشترك</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="month" placeholder="تاريخ الوصول">
+                        </div>
+                    </div>
+                    
+                    <!-- شريط الميزانية -->
+                    <div class="budget-slider-container">
+                        <div class="budget-label">
+                            <i class="fas fa-wallet"></i>
+                            <span>الميزانية: <strong id="budgetValue">1500 درهم</strong></span>
+                        </div>
+                        <input type="range" id="budgetSlider" min="500" max="3000" value="1500" class="budget-slider">
+                    </div>
+                    
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                        بحث عن سكن
+                    </button>
+                </div>
+            </div>
+        </section>
 
-.dashboard.dark-mode .dashboard-section,
-.dashboard.dark-mode .stat-card,
-.dashboard.dark-mode .quick-action-btn {
-    background: #2d2d2d;
-    color: #f8f9fa;
-}
+        <!-- السكن المتاح -->
+        <section class="properties-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-home"></i>
+                    سكن متاح للطلاب
+                </h2>
+                
+                <div class="properties-grid">
+                    <!-- عقار 1 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge premium">مميز</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">شقة طلابية - الدار البيضاء</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                حي المعاريف، قرب الجامعة
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 غرف</span>
+                                <span><i class="fas fa-bath"></i> 1 حمام</span>
+                                <span><i class="fas fa-wifi"></i> واي فاي</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>1,800 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عقار 2 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge discount">خصم 20%</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">استوديو - الرباط</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                حي أكدال، قرب المترو
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 غرفة</span>
+                                <span><i class="fas fa-bath"></i> 1 حمام</span>
+                                <span><i class="fas fa-utensils"></i> مطبخ</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>1,200 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عقار 3 -->
+                    <div class="property-card">
+                        <div class="property-image">
+                            <span class="property-badge new">جديد</span>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">غرفة - مراكش</h3>
+                            <p class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                وسط المدينة، قرب المواصلات
+                            </p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 غرفة</span>
+                                <span><i class="fas fa-bath"></i> حمام مشترك</span>
+                                <span><i class="fas fa-user-friends"></i> سكن مشترك</span>
+                            </div>
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    <strong>900 درهم</strong>
+                                    <span>/شهر</span>
+                                </div>
+                                <button class="property-btn view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="show-more-container">
+                    <button class="show-more-btn">
+                        <i class="fas fa-arrow-down"></i>
+                        عرض المزيد من السكن
+                    </button>
+                </div>
+            </div>
+        </section>
 
-.dashboard.dark-mode .dashboard-topbar {
-    background: #2d2d2d;
-}
+        <!-- إضافة سكن -->
+        <section class="add-section" id="add-property">
+            <div class="container">
+                <div class="add-container">
+                    <h2 class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+                        هل تملك سكن للطلاب؟
+                    </h2>
+                    <p class="section-subtitle">
+                        عُرض سكنك على آلاف الطلاب واحصل على دخل إضافي
+                    </p>
+                    
+                    <form class="add-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-map-marker-alt"></i> العنوان الكامل</label>
+                                <input type="text" placeholder="الحي، الشارع، رقم المنزل" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-tag"></i> السعر الشهري (درهم)</label>
+                                <input type="number" placeholder="مثال: 1500" min="500" max="5000" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-door-open"></i> عدد الغرف</label>
+                                <select required>
+                                    <option value="">اختر عدد الغرف</option>
+                                    <option value="1">1 غرفة</option>
+                                    <option value="2">2 غرف</option>
+                                    <option value="3">3 غرف</option>
+                                    <option value="4+">4 غرف أو أكثر</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> رقم الهاتف</label>
+                                <input type="tel" placeholder="مثال: 0612345678" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-image"></i> صور السكن</label>
+                            <div class="file-upload-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>اسحب وأفلت الصور هنا أو <span>انقر للاختيار</span></p>
+                                <input type="file" multiple accept="image/*">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="publish-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            نشر الإعلان
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-.dashboard.dark-mode h1,
-.dashboard.dark-mode h2,
-.dashboard.dark-mode h3,
-.dashboard.dark-mode h4 {
-    color: #f8f9fa;
-}
+        <!-- المميزات -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">لماذا تختار StudentStay؟</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>آمن وموثوق</h3>
+                        <p>جميع العقارات والمالكين موثقون</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>بحث سهل</h3>
+                        <p>ابحث حسب المدينة، السعر، والمواصفات</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>تواصل مباشر</h3>
+                        <p>تواصل مباشر مع الملاك والطلاب</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>دعم 24/7</h3>
+                        <p>فريق الدعم جاهز لمساعدتك</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-.dashboard.dark-mode p,
-.dashboard.dark-mode .stat-label,
-.dashboard.dark-mode .property-details p,
-.dashboard.dark-mode .quick-action-btn p {
-    color: #adb5bd;
-}
+    <!-- الفوتر -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <div>
+                            <h3>StudentStay</h3>
+                            <p>منصة سكن الطلاب</p>
+                        </div>
+                    </div>
+                    <p class="footer-about">
+                        نوفر سكن طلابي آمن ومريح في جميع المدن المغربية
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <a href="#search">البحث عن سكن</a>
+                    <a href="#add-property">إضافة إعلان</a>
+                    <a href="#help">المساعدة</a>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <p><i class="fas fa-phone"></i> 0522-123456</p>
+                    <p><i class="fas fa-envelope"></i> info@studentstay.ma</p>
+                    <p><i class="fas fa-map-marker-alt"></i> المغرب</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 StudentStay. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
 
-.dashboard.dark-mode .properties-table th {
-    background: #1a1a1a;
-    color: #adb5bd;
-}
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-.dashboard.dark-mode .activity-item {
-    background: #1a1a1a;
-}
-
-.dashboard.dark-mode .activity-item:hover {
-    background: #2d2d2d;
-}
-
-.dashboard.dark-mode .search-box input {
-    background: #2d2d2d;
-    border-color: #444;
-    color: #f8f9fa;
-}
+    <!-- JavaScript الكامل مدمج هنا -->
+    <script>
+        // ===== الحل الكامل لصندوق الاختيار =====
+        
+        // 1. عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 StudentStay - تم تحميل الصفحة');
+            
+            // إخفاء معاينة التحميل
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
+            
+            // إدارة صندوق الاختيار
+            initUserChoice();
+            
+            // إعداد الأحداث
+            setupEvents();
+            
+            // زر العودة للأعلى
+            setupBackToTop();
+            
+            // شريط الميزانية
+            setupBudgetSlider();
+        });
+        
+        // 2. تهيئة صندوق الاختيار
+        function initUserChoice() {
+            const modal = document.getElementById('userChoiceModal');
+            const userChoice = localStorage.getItem('userType');
+            
+            console.log('💾 الاختيار السابق:', userChoice || 'لا يوجد');
+            
+            if (userChoice) {
+                // إخفاء الصندوق إذا كان هناك اختيار سابق
+                modal.style.display = 'none';
+                updateUserDisplay(userChoice);
+            } else {
+                // عرض الصندوق لأول مرة
+                modal.style.display = 'flex';
+                modal.classList.add('show');
+            }
+        }
+        
+        // 3. تحديث عرض نوع المستخدم
+        function updateUserDisplay(type) {
+            const display = document.getElementById('currentUserType');
+            if (!display) return;
+            
+            // تنظيف الأنماط القديمة
+            display.className = 'user-type-display';
+            
+            // إضافة النمط الجديد
+            if (type === 'student') {
+                display.classList.add('student-mode');
+                display.innerHTML = '<i class="fas fa-graduation-cap"></i><span>وضع الطالب</span>';
+            } else if (type === 'owner') {
+                display.classList.add('owner-mode');
+                display.innerHTML = '<i class="fas fa-user-tie"></i><span>وضع صاحب العقار</span>';
+            } else {
+                display.classList.add('visitor-mode');
+                display.innerHTML = '<i class="fas fa-user"></i><span>زائر</span>';
+            }
+            
+            // إضافة حدث النقر لتغيير الوضع
+            display.onclick = function() {
+                localStorage.removeItem('userType');
+                const modal = document.getElementById('userChoiceModal');
+                modal.style.display = 'flex';
+                modal.classList.add('show');
+            };
+        }
+        
+        // 4. اختيار نوع المستخدم
+        function selectUserType(type) {
+            console.log('✅ تم الاختيار:', type);
+            
+            // حفظ الاختيار
+            localStorage.setItem('userType', type);
+            
+            // إخفاء الصندوق
+            const modal = document.getElementById('userChoiceModal');
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+            
+            // تحديث العرض
+            updateUserDisplay(type);
+            
+            // رسالة ترحيب
+            showNotification(getWelcomeMessage(type));
+        }
+        
+        // 5. الحصول على رسالة الترحيب
+        function getWelcomeMessage(type) {
+            if (type === 'student') {
+                return '🎓 مرحباً بك كطالب! يمكنك الآن البحث عن سكن يناسبك.';
+            } else if (type === 'owner') {
+                return '👔 مرحباً بك كصاحب عقار! يمكنك الآن إضافة سكنك للطلاب.';
+            } else {
+                return '👋 مرحباً بك كزائر! يمكنك تصفح المنصة.';
+            }
+        }
+        
+        // 6. إعداد الأحداث
+        function setupEvents() {
+            // اختيار الطالب
+            const studentChoice = document.getElementById('studentChoice');
+            if (studentChoice) {
+                studentChoice.addEventListener('click', function() {
+                    selectUserType('student');
+                });
+            }
+            
+            // اختيار صاحب العقار
+            const ownerChoice = document.getElementById('ownerChoice');
+            if (ownerChoice) {
+                ownerChoice.addEventListener('click', function() {
+                    selectUserType('owner');
+                });
+            }
+            
+            // تخطي (زائر)
+            const skipChoice = document.getElementById('skipChoice');
+            if (skipChoice) {
+                skipChoice.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    selectUserType('visitor');
+                });
+            }
+            
+            // أزرار اللغة
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة النشط من الجميع
+                    langButtons.forEach(b => b.classList.remove('active'));
+                    // إضافة النشط للزر المضغوط
+                    this.classList.add('active');
+                    
+                    // إشعار تغيير اللغة
+                    const lang = this.textContent.includes('Français') ? 'الفرنسية' : 
+                                 this.textContent.includes('English') ? 'الإنجليزية' : 'العربية';
+                    showNotification(`تم التبديل إلى اللغة ${lang}`);
+                });
+            });
+            
+            // زر البحث
+            const searchButton = document.querySelector('.search-button');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    showNotification('🔍 جاري البحث عن سكن...');
+                });
+            }
+            
+            // أزرار عرض التفاصيل
+            const viewButtons = document.querySelectorAll('.view-btn');
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    showNotification('جاري تحميل تفاصيل السكن...');
+                });
+            });
+            
+            // زر عرض المزيد
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            if (showMoreBtn) {
+                showMoreBtn.addEventListener('click', function() {
+                    showNotification('🔄 جاري تحميل المزيد من السكن...');
+                });
+            }
+            
+            // زر نشر الإعلان
+            const publishBtn = document.querySelector('.publish-btn');
+            if (publishBtn) {
+                publishBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showNotification('📤 جاري نشر إعلانك...');
+                });
+            }
+        }
+        
+        // 7. إعداد شريط الميزانية
+        function setupBudgetSlider() {
+            const slider = document.getElementById('budgetSlider');
+            const value = document.getElementById('budgetValue');
+            
+            if (slider && value) {
+                slider.addEventListener('input', function() {
+                    value.textContent = `${this.value} درهم`;
+                });
+            }
+        }
+        
+        // 8. إعداد زر العودة للأعلى
+        function setupBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTop.style.display = 'flex';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+                
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        }
+        
+        // 9. عرض الإشعارات
+        function showNotification(message) {
+            // إنشاء العنصر
+            const notification = document.createElement('div');
+            notification.className = 'quick-notification';
+            
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span>${message}</span>
+                    <button class="notification-close">&times;</button>
+                </div>
+            `;
+            
+            // زر الإغلاق
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.addEventListener('click', function() {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            // إضافة للصفحة
+            document.body.appendChild(notification);
+            
+            // إزالة تلقائية بعد 5 ثواني
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // 10. تغيير اللغة (وظيفة مساعدة)
+        function changeLanguage(lang) {
+            let message;
+            if (lang === 'ar') {
+                message = '✅ تم التبديل إلى اللغة العربية';
+            } else if (lang === 'fr') {
+                message = '✅ Langue changée en français';
+            } else {
+                message = '✅ Language switched to English';
+            }
+            showNotification(message);
+        }
+        
+        // 11. جعل الدوال متاحة عالمياً
+        window.selectUserType = selectUserType;
+        window.skipChoice = function() { selectUserType('visitor'); };
+        window.changeLanguage = changeLanguage;
+    </script>
+</body>
+</html>
