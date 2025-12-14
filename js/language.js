@@ -1,4 +1,4 @@
-// ===== MULTI-LANGUAGE SYSTEM =====
+// ===== MULTI-LANGUAGE SYSTEM WITH PAYMENT =====
 
 class LanguageManager {
     constructor() {
@@ -80,6 +80,7 @@ class LanguageManager {
                 'title.add': 'إضافة سكن جديد',
                 'title.features': 'مميزات المنصة',
                 'title.contact': 'اتصل بنا',
+                'title.payment': 'الدفع والاشتراكات',
                 
                 // النصوص
                 'text.hero': 'أكثر من 1000 سكن متاح في 12 مدينة مغربية',
@@ -101,6 +102,7 @@ class LanguageManager {
                 'message.noResults': 'لم يتم العثور على نتائج',
                 'message.loginRequired': 'يجب تسجيل الدخول',
                 'message.confirmDelete': 'هل أنت متأكد من الحذف؟',
+                'message.languageChanged': 'تم تغيير اللغة',
                 
                 // النماذج
                 'form.fullName': 'الاسم الكامل',
@@ -145,7 +147,41 @@ class LanguageManager {
                 'day.thursday': 'الخميس',
                 'day.friday': 'الجمعة',
                 'day.saturday': 'السبت',
-                'day.sunday': 'الأحد'
+                'day.sunday': 'الأحد',
+                
+                // ===== الدفع والاشتراكات =====
+                'payment.title': 'الدفع والاشتراكات',
+                'payment.ownerSubscriptions': 'اشتراكات الملاك',
+                'payment.studentCommission': 'عمولة الطالب',
+                'payment.selectPlan': 'اختر خطتك',
+                'payment.basicPlan': 'الباقة البسيطة',
+                'payment.premiumPlan': 'الباقة المتقدمة',
+                'payment.proPlan': 'الباقة المحترفة',
+                'payment.pricePerMonth': '/شهر',
+                'payment.maxProperties': 'حد أقصى للعقارات',
+                'payment.featuredListings': 'عقارات مميزة',
+                'payment.prioritySupport': 'دعم أولوي',
+                'payment.unlimitedProperties': 'عقارات غير محدودة',
+                'payment.subscribeNow': 'اشترك الآن',
+                'payment.commissionRate': 'عمولة %2 على الحجز',
+                'payment.securePayment': 'دفع آمن',
+                'payment.paymentMethods': 'طرق الدفع',
+                'payment.cih': 'البنك المغربي للتجارة الخارجية',
+                'payment.attijari': 'أتجياري باي',
+                'payment.paypal': 'باي بال',
+                'payment.card': 'بطاقة ائتمان',
+                'payment.transactionHistory': 'سجل المعاملات',
+                'payment.date': 'التاريخ',
+                'payment.amount': 'المبلغ',
+                'payment.status': 'الحالة',
+                'payment.status.paid': 'مدفوع',
+                'payment.status.pending': 'قيد الانتظار',
+                'payment.status.failed': 'فشل',
+                'payment.renewSubscription': 'جدد اشتراكك',
+                'payment.upgradePlan': 'ترقية الباقة',
+                'payment.mostPopular': 'الأكثر شعبية',
+                'payment.commissionNote': 'العمولة تضمن خدمة آمنة وموثوقة للطالب مع دعم كامل خلال فترة الإيجار',
+                'payment.allTransactionsEncrypted': 'جميع المعاملات مشفرة وآمنة'
             },
             
             fr: {
@@ -175,6 +211,7 @@ class LanguageManager {
                 'title.add': 'Ajouter un logement',
                 'title.features': 'Fonctionnalités',
                 'title.contact': 'Contactez-nous',
+                'title.payment': 'Paiements et Abonnements',
                 
                 // النصوص
                 'text.hero': 'Plus de 1000 logements disponibles dans 12 villes marocaines',
@@ -196,6 +233,7 @@ class LanguageManager {
                 'message.noResults': 'Aucun résultat trouvé',
                 'message.loginRequired': 'Connexion requise',
                 'message.confirmDelete': 'Êtes-vous sûr de vouloir supprimer ?',
+                'message.languageChanged': 'Langue changée',
                 
                 // النماذج
                 'form.fullName': 'Nom complet',
@@ -240,7 +278,41 @@ class LanguageManager {
                 'day.thursday': 'Jeudi',
                 'day.friday': 'Vendredi',
                 'day.saturday': 'Samedi',
-                'day.sunday': 'Dimanche'
+                'day.sunday': 'Dimanche',
+                
+                // ===== الدفع والاشتراكات =====
+                'payment.title': 'Paiements et Abonnements',
+                'payment.ownerSubscriptions': 'Abonnements Propriétaires',
+                'payment.studentCommission': 'Commission Étudiant',
+                'payment.selectPlan': 'Choisissez votre forfait',
+                'payment.basicPlan': 'Forfait Basique',
+                'payment.premiumPlan': 'Forfait Premium',
+                'payment.proPlan': 'Forfait Pro',
+                'payment.pricePerMonth': '/mois',
+                'payment.maxProperties': 'Propriétés max',
+                'payment.featuredListings': 'Annonces en vedette',
+                'payment.prioritySupport': 'Support prioritaire',
+                'payment.unlimitedProperties': 'Propriétés illimitées',
+                'payment.subscribeNow': 'S\'abonner maintenant',
+                'payment.commissionRate': 'Commission 2% sur réservation',
+                'payment.securePayment': 'Paiement sécurisé',
+                'payment.paymentMethods': 'Modes de paiement',
+                'payment.cih': 'CIH Bank',
+                'payment.attijari': 'Attijari Pay',
+                'payment.paypal': 'PayPal',
+                'payment.card': 'Carte de crédit',
+                'payment.transactionHistory': 'Historique des transactions',
+                'payment.date': 'Date',
+                'payment.amount': 'Montant',
+                'payment.status': 'Statut',
+                'payment.status.paid': 'Payé',
+                'payment.status.pending': 'En attente',
+                'payment.status.failed': 'Échoué',
+                'payment.renewSubscription': 'Renouveler l\'abonnement',
+                'payment.upgradePlan': 'Mettre à niveau',
+                'payment.mostPopular': 'Le plus populaire',
+                'payment.commissionNote': 'La commission garantit un service sécurisé et fiable pour l\'étudiant avec un support complet pendant la location',
+                'payment.allTransactionsEncrypted': 'Toutes les transactions sont cryptées et sécurisées'
             },
             
             en: {
@@ -270,6 +342,7 @@ class LanguageManager {
                 'title.add': 'Add New Property',
                 'title.features': 'Platform Features',
                 'title.contact': 'Contact Us',
+                'title.payment': 'Payments & Subscriptions',
                 
                 // Texts
                 'text.hero': 'Over 1000 properties available in 12 Moroccan cities',
@@ -291,6 +364,7 @@ class LanguageManager {
                 'message.noResults': 'No results found',
                 'message.loginRequired': 'Login required',
                 'message.confirmDelete': 'Are you sure you want to delete?',
+                'message.languageChanged': 'Language changed',
                 
                 // Forms
                 'form.fullName': 'Full Name',
@@ -335,7 +409,41 @@ class LanguageManager {
                 'day.thursday': 'Thursday',
                 'day.friday': 'Friday',
                 'day.saturday': 'Saturday',
-                'day.sunday': 'Sunday'
+                'day.sunday': 'Sunday',
+                
+                // ===== PAYMENT AND SUBSCRIPTIONS =====
+                'payment.title': 'Payments & Subscriptions',
+                'payment.ownerSubscriptions': 'Owner Subscriptions',
+                'payment.studentCommission': 'Student Commission',
+                'payment.selectPlan': 'Choose Your Plan',
+                'payment.basicPlan': 'Basic Plan',
+                'payment.premiumPlan': 'Premium Plan',
+                'payment.proPlan': 'Pro Plan',
+                'payment.pricePerMonth': '/month',
+                'payment.maxProperties': 'Max Properties',
+                'payment.featuredListings': 'Featured Listings',
+                'payment.prioritySupport': 'Priority Support',
+                'payment.unlimitedProperties': 'Unlimited Properties',
+                'payment.subscribeNow': 'Subscribe Now',
+                'payment.commissionRate': '2% Commission on Booking',
+                'payment.securePayment': 'Secure Payment',
+                'payment.paymentMethods': 'Payment Methods',
+                'payment.cih': 'CIH Bank',
+                'payment.attijari': 'Attijari Pay',
+                'payment.paypal': 'PayPal',
+                'payment.card': 'Credit Card',
+                'payment.transactionHistory': 'Transaction History',
+                'payment.date': 'Date',
+                'payment.amount': 'Amount',
+                'payment.status': 'Status',
+                'payment.status.paid': 'Paid',
+                'payment.status.pending': 'Pending',
+                'payment.status.failed': 'Failed',
+                'payment.renewSubscription': 'Renew Subscription',
+                'payment.upgradePlan': 'Upgrade Plan',
+                'payment.mostPopular': 'Most Popular',
+                'payment.commissionNote': 'Commission ensures secure and reliable service for students with full support during the rental period',
+                'payment.allTransactionsEncrypted': 'All transactions are encrypted and secure'
             }
         };
         
@@ -518,10 +626,486 @@ class LanguageManager {
     }
 }
 
+// ===== PAYMENT SYSTEM =====
+
+class PaymentManager {
+    constructor() {
+        this.subscriptionPlans = {
+            basic: {
+                name: 'basic',
+                price: 99,
+                maxProperties: 3,
+                features: ['3 عقارات كحد أقصى', 'لوحة تحكم أساسية', 'دعم عبر البريد'],
+                color: '#06d6a0'
+            },
+            premium: {
+                name: 'premium',
+                price: 199,
+                maxProperties: 10,
+                features: ['10 عقارات كحد أقصى', 'عقارات مميزة', 'دعم فوري', 'إحصائيات متقدمة'],
+                color: '#4361ee'
+            },
+            professional: {
+                name: 'professional',
+                price: 299,
+                maxProperties: 'unlimited',
+                features: ['عقارات غير محدودة', 'أولوية في البحث', 'دعم 24/7', 'تقرير شهري', 'مدير عقارات شخصي'],
+                color: '#7209b7'
+            }
+        };
+        
+        this.commissionRate = 0.02; // 2% عمولة على الطالب
+        this.currentUserPlan = null;
+        
+        this.init();
+    }
+    
+    async init() {
+        await this.loadUserSubscription();
+        this.setupPaymentListeners();
+    }
+    
+    // تحميل اشتراك المستخدم
+    async loadUserSubscription() {
+        // محاكاة جلب بيانات من API
+        const savedPlan = localStorage.getItem('userSubscription') || 'none';
+        
+        if (savedPlan !== 'none') {
+            this.currentUserPlan = this.subscriptionPlans[savedPlan];
+            this.updateUIForPlan();
+        }
+        
+        return this.currentUserPlan;
+    }
+    
+    // تحديث واجهة المستخدم حسب الباقة
+    updateUIForPlan() {
+        const userTypeDisplay = document.getElementById('currentUserType');
+        const addPropertyBtn = document.querySelector('[href="#add-property"]');
+        
+        if (userTypeDisplay && this.currentUserPlan) {
+            userTypeDisplay.innerHTML += ` <span class="plan-badge" style="background: ${this.currentUserPlan.color}">${this.currentUserPlan.name === 'basic' ? 'بسيط' : this.currentUserPlan.name === 'premium' ? 'متميز' : 'محترف'}</span>`;
+        }
+        
+        if (addPropertyBtn && this.currentUserPlan) {
+            const propertiesCount = this.getUserPropertiesCount();
+            if (propertiesCount >= this.currentUserPlan.maxProperties && this.currentUserPlan.maxProperties !== 'unlimited') {
+                addPropertyBtn.innerHTML = '<i class="fas fa-lock"></i><span>الحد الأقصى</span>';
+                addPropertyBtn.style.opacity = '0.6';
+                addPropertyBtn.onclick = (e) => {
+                    e.preventDefault();
+                    this.showUpgradeModal();
+                };
+            }
+        }
+    }
+    
+    // عرض نافذة الترقية
+    showUpgradeModal() {
+        const modal = document.createElement('div');
+        modal.className = 'upgrade-modal';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        modal.innerHTML = `
+            <div class="upgrade-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0; color: #333;">${this.translate('payment.upgradePlan')}</h3>
+                    <button class="close-modal" style="background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+                </div>
+                
+                <p style="color: #666; margin-bottom: 25px;">
+                    لقد وصلت إلى الحد الأقصى للعقارات في باقتك الحالية. ترقية إلى باقة أعلى لإضافة المزيد من العقارات.
+                </p>
+                
+                <div class="upgrade-options" style="display: flex; flex-direction: column; gap: 15px;">
+                    ${this.generatePlanCards()}
+                </div>
+                
+                <div style="margin-top: 25px; text-align: center;">
+                    <button class="btn-secondary" style="padding: 10px 20px; background: #f8f9fa; border: none; border-radius: 8px; cursor: pointer;">
+                        ${this.translate('btn.cancel')}
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // إغلاق النافذة
+        modal.querySelector('.close-modal').onclick = () => modal.remove();
+        modal.querySelector('.btn-secondary').onclick = () => modal.remove();
+        
+        // أحداث الأزرار
+        modal.querySelectorAll('.plan-card').forEach(card => {
+            card.onclick = () => {
+                const planName = card.dataset.plan;
+                this.selectPlan(planName);
+                modal.remove();
+            };
+        });
+    }
+    
+    // توليد بطاقات الباقات
+    generatePlanCards() {
+        let html = '';
+        
+        for (const [key, plan] of Object.entries(this.subscriptionPlans)) {
+            if (this.currentUserPlan && plan.name === this.currentUserPlan.name) continue;
+            
+            html += `
+                <div class="plan-card" data-plan="${plan.name}" style="
+                    border: 2px solid ${plan.color};
+                    border-radius: 10px;
+                    padding: 20px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                ">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h4 style="margin: 0; color: ${plan.color};">${this.translate(`payment.${plan.name}Plan`)}</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: ${plan.color};">
+                            ${plan.price} ${this.translate('payment.pricePerMonth').replace('/', '')}
+                            <small style="font-size: 14px; color: #666;">${this.translate('payment.pricePerMonth')}</small>
+                        </div>
+                    </div>
+                    
+                    <ul style="margin: 0 0 20px 0; padding-left: 20px; color: #555;">
+                        ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    
+                    <button class="upgrade-btn" style="
+                        width: 100%;
+                        padding: 12px;
+                        background: ${plan.color};
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    ">
+                        ${this.translate('payment.subscribeNow')}
+                    </button>
+                </div>
+            `;
+        }
+        
+        return html;
+    }
+    
+    // اختيار باقة
+    async selectPlan(planName) {
+        const plan = this.subscriptionPlans[planName];
+        
+        if (!plan) {
+            showNotification(this.translate('message.error'), 'الباقة غير موجودة', 'error');
+            return;
+        }
+        
+        // محاكاة عملية الدفع
+        showNotification(this.translate('message.loading'), 'جاري تحويلك لصفحة الدفع...', 'info');
+        
+        // محاكاة انتظار الدفع
+        setTimeout(async () => {
+            // محاكاة نجاح الدفع
+            this.currentUserPlan = plan;
+            localStorage.setItem('userSubscription', planName);
+            
+            showNotification(
+                this.translate('message.success'),
+                `تم الاشتراك في الباقة ${this.translate(`payment.${planName}Plan`)} بنجاح!`,
+                'success'
+            );
+            
+            this.updateUIForPlan();
+            
+            // إرسال إشعار للطالب
+            if (window.userType === 'owner') {
+                showNotification(
+                    '🎉 تهانينا!',
+                    `يمكنك الآن إضافة حتى ${plan.maxProperties === 'unlimited' ? 'عدد غير محدود' : plan.maxProperties} من العقارات`,
+                    'success'
+                );
+            }
+        }, 2000);
+    }
+    
+    // حساب عمولة الطالب
+    calculateCommission(rentAmount) {
+        return rentAmount * this.commissionRate;
+    }
+    
+    // محاكاة حجز طالب
+    async simulateStudentBooking(propertyId, rentAmount) {
+        const commission = this.calculateCommission(rentAmount);
+        const totalAmount = rentAmount + commission;
+        
+        // عرض تفاصيل الدفع للطالب
+        const confirmPayment = confirm(`
+            تفاصيل الحجز:
+            - سعر الإيجار: ${rentAmount} درهم
+            - عمولة المنصة (2%): ${commission} درهم
+            - المبلغ الإجمالي: ${totalAmount} درهم
+            
+            هل تريد متابعة الدفع؟
+        `);
+        
+        if (!confirmPayment) return false;
+        
+        // محاكاة عملية الدفع
+        showNotification('جاري معالجة الدفع...', 'الرجاء الانتظار', 'info');
+        
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                // محاكاة نجاح الدفع
+                this.saveTransaction({
+                    type: 'student_booking',
+                    amount: totalAmount,
+                    commission: commission,
+                    propertyId: propertyId,
+                    date: new Date().toISOString(),
+                    status: 'completed'
+                });
+                
+                showNotification('تم الدفع بنجاح!', 'سيتم التواصل معك قريباً', 'success');
+                resolve(true);
+            }, 3000);
+        });
+    }
+    
+    // حفظ المعاملة
+    saveTransaction(transaction) {
+        const transactions = JSON.parse(localStorage.getItem('paymentTransactions') || '[]');
+        transactions.push(transaction);
+        localStorage.setItem('paymentTransactions', JSON.stringify(transactions));
+    }
+    
+    // الحصول على سجل المعاملات
+    getTransactionHistory() {
+        return JSON.parse(localStorage.getItem('paymentTransactions') || '[]');
+    }
+    
+    // إعداد مستمعي الأحداث
+    setupPaymentListeners() {
+        // زر الدفع في لوحة التحكم
+        const paymentButtons = document.querySelectorAll('[data-payment-action]');
+        paymentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const action = btn.dataset.paymentAction;
+                this.handlePaymentAction(action);
+            });
+        });
+        
+        // أزرار الاشتراك في الباقات
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.subscribe-btn')) {
+                const planName = e.target.closest('.subscribe-btn').dataset.plan;
+                this.selectPlan(planName);
+            }
+        });
+    }
+    
+    // معالجة إجراءات الدفع
+    handlePaymentAction(action) {
+        switch(action) {
+            case 'view_subscriptions':
+                this.showUpgradeModal();
+                break;
+            case 'view_transactions':
+                this.showTransactionHistory();
+                break;
+            case 'renew_subscription':
+                this.renewSubscription();
+                break;
+        }
+    }
+    
+    // عرض سجل المعاملات
+    showTransactionHistory() {
+        const transactions = this.getTransactionHistory();
+        
+        if (transactions.length === 0) {
+            showNotification('لا توجد معاملات سابقة', 'قمت بأي عمليات دفع بعد', 'info');
+            return;
+        }
+        
+        let html = `
+            <div style="max-width: 800px; margin: 20px auto;">
+                <h3 style="text-align: center; margin-bottom: 20px;">${this.translate('payment.transactionHistory')}</h3>
+                <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead style="background: #4361ee; color: white;">
+                            <tr>
+                                <th style="padding: 15px; text-align: right;">${this.translate('payment.date')}</th>
+                                <th style="padding: 15px; text-align: right;">${this.translate('payment.amount')}</th>
+                                <th style="padding: 15px; text-align: right;">${this.translate('payment.status')}</th>
+                                <th style="padding: 15px; text-align: right;">النوع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        `;
+        
+        transactions.forEach(transaction => {
+            const date = new Date(transaction.date).toLocaleDateString('ar-EG');
+            const amount = transaction.amount.toFixed(2);
+            const status = transaction.status === 'completed' ? this.translate('payment.status.paid') : 
+                          transaction.status === 'pending' ? this.translate('payment.status.pending') : 
+                          this.translate('payment.status.failed');
+            
+            html += `
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px;">${date}</td>
+                    <td style="padding: 15px; font-weight: bold;">${amount} درهم</td>
+                    <td style="padding: 15px;">
+                        <span style="
+                            padding: 5px 10px;
+                            border-radius: 20px;
+                            font-size: 12px;
+                            background: ${transaction.status === 'completed' ? '#06d6a0' : 
+                                       transaction.status === 'pending' ? '#ffd166' : '#ef476f'};
+                            color: white;
+                        ">
+                            ${status}
+                        </span>
+                    </td>
+                    <td style="padding: 15px;">${transaction.type === 'subscription' ? 'اشتراك' : 'حجز طالب'}</td>
+                </tr>
+            `;
+        });
+        
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+        
+        // عرض في نافذة منبثقة
+        const modal = document.createElement('div');
+        modal.innerHTML = html;
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        `;
+        
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.remove();
+        };
+        
+        document.body.appendChild(modal);
+    }
+    
+    // تجديد الاشتراك
+    renewSubscription() {
+        if (!this.currentUserPlan) {
+            showNotification('عذراً', 'ليس لديك اشتراك فعال للتجديد', 'error');
+            return;
+        }
+        
+        if (confirm(`هل تريد تجديد اشتراك ${this.translate(`payment.${this.currentUserPlan.name}Plan`)} بقيمة ${this.currentUserPlan.price} درهم؟`)) {
+            this.selectPlan(this.currentUserPlan.name);
+        }
+    }
+    
+    // الحصول على عدد عقارات المستخدم
+    getUserPropertiesCount() {
+        // محاكاة - في الواقع يجب جلب من قاعدة البيانات
+        return parseInt(localStorage.getItem('userPropertiesCount') || '0');
+    }
+    
+    // دالة الترجمة المساعدة
+    translate(key) {
+        if (window.languageManager) {
+            return window.languageManager.translate(key);
+        }
+        return key;
+    }
+}
+
+// ===== GLOBAL FUNCTIONS =====
+
 // إنشاء نسخة واحدة من مدير اللغة
 const languageManager = new LanguageManager();
 
+// إنشاء نسخة واحدة من مدير الدفع
+const paymentManager = new PaymentManager();
+
+// دالة عرض الإشعارات
+function showNotification(title, message = '', type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = 'quick-notification';
+    
+    let icon = 'ℹ️';
+    if (type === 'success') icon = '✅';
+    if (type === 'error') icon = '❌';
+    if (type === 'warning') icon = '⚠️';
+    
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span>${icon} <strong>${title}</strong> ${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#06d6a0' : 
+                    type === 'error' ? '#ef476f' : 
+                    type === 'warning' ? '#ffd166' : '#4361ee'};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+        max-width: 350px;
+        font-weight: 500;
+    `;
+    
+    // زر الإغلاق
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', function() {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    });
+    
+    // إضافة للصفحة
+    document.body.appendChild(notification);
+    
+    // إزالة تلقائية بعد 5 ثواني
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+}
+
 // جعل الدوال متاحة عالمياً
 window.languageManager = languageManager;
+window.paymentManager = paymentManager;
 window.translate = (key, defaultValue = '') => languageManager.translate(key, defaultValue);
 window.changeLanguage = (lang) => languageManager.changeLanguage(lang);
+window.showNotification = showNotification;
+window.calculateCommission = (amount) => paymentManager.calculateCommission(amount);
