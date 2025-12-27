@@ -1034,3 +1034,286 @@ function translate(key, defaultValue = '') {
     }
     return defaultValue || key;
 }
+
+// ===== التعديلات الجديدة: تحميل الصور والتأكد من ظهورها =====
+
+// دالة لتحميل الصور والتأكد من ظهورها
+function checkImagesLoaded() {
+    console.log('✅ جاري التحقق من الصور...');
+    
+    const images = document.querySelectorAll('img, .property-image');
+    let loadedCount = 0;
+    let errorCount = 0;
+    
+    images.forEach((img, index) => {
+        if (img.tagName === 'IMG') {
+            // التحقق من الصور العادية
+            img.onload = () => {
+                loadedCount++;
+                console.log(`✅ صورة ${img.src || img.alt} تم تحميلها (${loadedCount}/${images.length})`);
+                
+                // إضافة تأثير عند تحميل الصور
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                }, 100);
+            };
+            
+            img.onerror = () => {
+                errorCount++;
+                console.log(`❌ خطأ في تحميل صورة: ${img.src || img.alt}`);
+                
+                // إضافة صورة بديلة
+                if (img.classList.contains('property-image') || img.parentElement.classList.contains('property-image')) {
+                    img.src = './assets/placeholder.jpg';
+                    img.onerror = null; // منع التكرار
+                }
+            };
+            
+            // تحميل الصور فوراً
+            if (img.src && !img.complete) {
+                img.loading = 'eager';
+            }
+        } else if (img.classList.contains('property-image')) {
+            // التحقق من خلفيات الصور
+            const bgImage = window.getComputedStyle(img).backgroundImage;
+            if (bgImage && bgImage !== 'none') {
+                loadedCount++;
+                console.log(`✅ خلفية عقار تم تحميلها (${loadedCount}/${images.length})`);
+            } else {
+                // إضافة خلفية افتراضية إذا لم توجد صورة
+                img.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                console.log(`⚠️ تم استخدام خلفية افتراضية للعقار`);
+            }
+        }
+    });
+    
+    // عرض تقرير نهائي
+    setTimeout(() => {
+        console.log(`📊 تقرير تحميل الصور: تم تحميل ${loadedCount} صورة بنجاح، ${errorCount} أخطاء`);
+        if (errorCount > 0) {
+            showNotification(`⚠️ حدثت أخطاء في تحميل ${errorCount} صورة، تم استخدام البدائل`, 'warning');
+        }
+    }, 2000);
+}
+
+// دالة لإصلاح مسارات الصور إذا كانت هناك مشكلة
+function fixImagePaths() {
+    console.log('🔧 جاري إصلاح مسارات الصور...');
+    
+    // إذا كانت الصور في مجلد فرعي
+    const images = document.querySelectorAll('img[src^="image/"], img[src^="images/"], img[src^="assets/"]');
+    
+    images.forEach(img => {
+        const currentSrc = img.getAttribute('src');
+        let newSrc = currentSrc;
+        
+        // تصحيح المسارات النسبية
+        if (!currentSrc.startsWith('./') && !currentSrc.startsWith('http')) {
+            newSrc = './' + currentSrc;
+        }
+        
+        // تصحيح المسارات المكسورة
+        if (currentSrc.includes('image/') || currentSrc.includes('images/')) {
+            // تغيير إلى مجلد assets إذا كان موجود
+            newSrc = currentSrc.replace(/^(image|images)\//, 'assets/');
+        }
+        
+        if (currentSrc !== newSrc) {
+            console.log(`↪️ تصحيح المسار: ${currentSrc} → ${newSrc}`);
+            img.src = newSrc;
+        }
+    });
+    
+    // تصحيح خلفيات CSS
+    const propertyImages = document.querySelectorAll('.property-image');
+    propertyImages.forEach(img => {
+        const bgImage = window.getComputedStyle(img).backgroundImage;
+        if (bgImage && bgImage !== 'none') {
+            const urlMatch = bgImage.match(/url\(["']?(.*?)["']?\)/);
+            if (urlMatch && urlMatch[1]) {
+                const currentUrl = urlMatch[1];
+                let newUrl = currentUrl;
+                
+                if (!currentUrl.startsWith('./') && !currentUrl.startsWith('http')) {
+                    newUrl = './' + currentUrl;
+                }
+                
+                if (currentUrl.includes('image/') || currentUrl.includes('images/')) {
+                    newUrl = currentUrl.replace(/^(image|images)\//, 'assets/');
+                }
+                
+                if (currentUrl !== newUrl) {
+                    console.log(`↪️ تصحيح خلفية العقار: ${currentUrl} → ${newUrl}`);
+                    img.style.backgroundImage = `url('${newUrl}')`;
+                }
+            }
+        }
+    });
+}
+
+// دالة لمعاينة الصور قبل الرفع
+function setupImagePreview() {
+    const fileInputs = document.querySelectorAll('input[type="file"][accept*="image"]');
+    
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function(e) {
+            const files = e.target.files;
+            const previewContainer = this.parentElement.querySelector('.image-preview-container') ||
+                                   document.createElement('div');
+            
+            if (!previewContainer.classList.contains('image-preview-container')) {
+                previewContainer.className = 'image-preview-container';
+                previewContainer.style.cssText = `
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    gap: 15px;
+                    margin-top: 20px;
+                `;
+                
+                const parent = this.parentElement;
+                parent.appendChild(previewContainer);
+            }
+            
+            // مسح المعاينات القديمة
+            previewContainer.innerHTML = '';
+            
+            // إضافة معاينات جديدة
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const preview = document.createElement('div');
+                    preview.className = 'image-preview';
+                    preview.style.cssText = `
+                        position: relative;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                    `;
+                    
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" style="width: 100%; height: 120px; object-fit: cover; display: block;">
+                        <button class="remove-image" style="
+                            position: absolute;
+                            top: 5px;
+                            right: 5px;
+                            background: rgba(239, 35, 60, 0.9);
+                            color: white;
+                            border: none;
+                            width: 25px;
+                            height: 25px;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 14px;
+                        ">×</button>
+                    `;
+                    
+                    previewContainer.appendChild(preview);
+                    
+                    // حدث إزالة الصورة
+                    preview.querySelector('.remove-image').addEventListener('click', function() {
+                        preview.remove();
+                        updateFileInput(input, files, i);
+                    });
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+}
+
+function updateFileInput(input, files, indexToRemove) {
+    // إنشاء DataTransfer جديد
+    const dt = new DataTransfer();
+    
+    // إضافة جميع الملفات ما عدا الذي تم حذفه
+    for (let i = 0; i < files.length; i++) {
+        if (i !== indexToRemove) {
+            dt.items.add(files[i]);
+        }
+    }
+    
+    // تحديث ملفات الـ input
+    input.files = dt.files;
+}
+
+// دالة لتحسين أداء الصور
+function optimizeImageLoading() {
+    // استخدام lazy loading للصور خارج الشاشة
+    const images = document.querySelectorAll('img:not([loading])');
+    images.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top > window.innerHeight * 2) {
+            img.loading = 'lazy';
+        }
+    });
+    
+    // إضافة تأثيرات تحميل للصور
+    const propertyImages = document.querySelectorAll('.property-image:not([data-loaded])');
+    propertyImages.forEach(img => {
+        img.setAttribute('data-loaded', 'true');
+        
+        // تأثير fade in للصور
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(img);
+    });
+}
+
+// ===== استدعاء الدوال بعد تحميل الصفحة =====
+window.addEventListener('load', function() {
+    console.log('🖼️ بدء معالجة الصور...');
+    
+    // 1. إصلاح المسارات أولاً
+    fixImagePaths();
+    
+    // 2. التحقق من تحميل الصور
+    setTimeout(checkImagesLoaded, 500);
+    
+    // 3. إعداد معاينة الصور
+    setupImagePreview();
+    
+    // 4. تحسين أداء تحميل الصور
+    optimizeImageLoading();
+    
+    // 5. تحديث الصور دورياً (كل 10 ثواني)
+    setInterval(() => {
+        const propertyImages = document.querySelectorAll('.property-image[style*="background-image"]');
+        propertyImages.forEach(img => {
+            const currentBg = img.style.backgroundImage;
+            if (currentBg && currentBg.includes('url')) {
+                // إعادة تحميل الصور لتجنب مشاكل الكاش
+                const newBg = currentBg.replace(/(\?.*)?$/, '?t=' + Date.now());
+                img.style.backgroundImage = newBg;
+            }
+        });
+    }, 10000);
+});
+
+// ===== جعل الدوال متاحة للاستخدام الخارجي =====
+window.imageManager = {
+    checkImagesLoaded,
+    fixImagePaths,
+    setupImagePreview,
+    optimizeImageLoading
+};
+
+console.log('✅ نظام إدارة الصور جاهز للاستخدام');
