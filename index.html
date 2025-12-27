@@ -405,8 +405,8 @@
         <div class="container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <!-- إضافة صورة الشعار -->
-                    <i class="fas fa-home"></i>
+                    <!-- إضافة صورة الشعار من مجلدك -->
+                    <img src="image/logo.png" alt="StudentStay Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>';">
                 </div>
                 <div class="logo-text">
                     <span class="logo-main">StudentStay</span>
@@ -508,7 +508,7 @@
                 <div class="properties-grid">
                     <!-- عقار 1 (أقل من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                        <div class="property-image" style="background-image: url('image/propriété/propriété1.jpg');">
                             <span class="property-badge premium">مميز</span>
                         </div>
                         <div class="property-info">
@@ -543,7 +543,7 @@
                     
                     <!-- عقار 2 (أكثر من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                        <div class="property-image" style="background-image: url('image/propriété/propriété2.jpg');">
                             <span class="property-badge discount">خصم 20%</span>
                         </div>
                         <div class="property-info">
@@ -578,7 +578,7 @@
                     
                     <!-- عقار 3 (أقل من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                        <div class="property-image" style="background-image: url('image/propriété/propriété3.jpg');">
                             <span class="property-badge new">جديد</span>
                         </div>
                         <div class="property-info">
@@ -922,8 +922,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <!-- إضافة صورة الشعار -->
-                        <i class="fas fa-home"></i>
+                        <!-- إضافة صورة الشعار من مجلدك -->
+                        <img src="image/logo.png" alt="StudentStay Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>';">
                         <div>
                             <h3>StudentStay</h3>
                             <p>منصة سكن الطلاب</p>
@@ -1468,24 +1468,62 @@
         
         // ===== التعديلات الجديدة: إدارة الصور =====
         
-        // 16. تحميل الصور
+        // 16. تحميل الصور من مجلدك
         function loadImages() {
-            console.log('🖼️ جاري تحميل الصور...');
+            console.log('🖼️ جاري تحميل الصور من مجلد image/propriété/...');
             
-            // إضافة صور للعقارات إذا لم تكن موجودة
+            // قائمة بأسماء الصور المحتملة في مجلدك
+            const possibleImages = [
+                'propriété1.jpg', 'propriété2.jpg', 'propriété3.jpg',
+                'propriété1.png', 'propriété2.png', 'propriété3.png',
+                'property1.jpg', 'property2.jpg', 'property3.jpg',
+                'house1.jpg', 'house2.jpg', 'house3.jpg'
+            ];
+            
+            // محاولة تحميل الصور للعقارات الثلاثة
             const propertyImages = document.querySelectorAll('.property-image');
+            
             propertyImages.forEach((img, index) => {
-                if (!img.style.backgroundImage || img.style.backgroundImage === 'none') {
-                    const imageUrls = [
+                // إذا كانت الصورة موجودة بالفعل، تخطي
+                if (img.style.backgroundImage && img.style.backgroundImage !== 'none') {
+                    console.log(`✅ الصورة موجودة بالفعل للعقار ${index + 1}`);
+                    return;
+                }
+                
+                // محاولة تحميل صورة من القائمة
+                const imageName = possibleImages[index];
+                const imagePath = `image/propriété/${imageName}`;
+                
+                // إنشاء صورة لاختبار وجودها
+                const testImage = new Image();
+                testImage.onload = function() {
+                    // الصورة موجودة، استخدمها
+                    img.style.backgroundImage = `url('${imagePath}')`;
+                    console.log(`✅ تم تحميل صورة للعقار ${index + 1}: ${imagePath}`);
+                };
+                
+                testImage.onerror = function() {
+                    // الصورة غير موجودة، استخدم بديل
+                    console.log(`⚠️ الصورة ${imagePath} غير موجودة، استخدام بديل`);
+                    const backupUrls = [
                         'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                         'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                         'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
                     ];
-                    
-                    const url = imageUrls[index % imageUrls.length];
-                    img.style.backgroundImage = `url('${url}')`;
-                    console.log(`✅ تم إضافة صورة للعقار ${index + 1}: ${url}`);
-                }
+                    img.style.backgroundImage = `url('${backupUrls[index % backupUrls.length]}')`;
+                };
+                
+                testImage.src = imagePath;
+            });
+            
+            // التحقق من صورة الشعار
+            const logoImages = document.querySelectorAll('img[src*="logo"]');
+            logoImages.forEach(img => {
+                const testLogo = new Image();
+                testLogo.onerror = function() {
+                    console.log(`⚠️ صورة الشعار غير موجودة: ${img.src}`);
+                };
+                testLogo.src = img.src;
             });
         }
         
@@ -1580,30 +1618,15 @@
             propertyImages.forEach(img => observer.observe(img));
         }
         
-        // 20. تحميل الصور بعد تحميل الصفحة
-        window.addEventListener('load', function() {
-            // تحديث الصور دورياً لتجنب مشاكل الكاش
-            setInterval(() => {
-                const propertyImages = document.querySelectorAll('.property-image[style*="background-image"]');
-                propertyImages.forEach(img => {
-                    const currentBg = img.style.backgroundImage;
-                    if (currentBg && currentBg.includes('url')) {
-                        // إضافة timestamp لتجنب الكاش
-                        const newBg = currentBg.replace(/(\?.*)?$/, '?t=' + Date.now());
-                        img.style.backgroundImage = newBg;
-                    }
-                });
-            }, 30000);
-        });
-        
-        // 21. جعل الدوال متاحة عالمياً
+        // 20. جعل الدوال متاحة عالمياً
         window.selectUserType = selectUserType;
         window.skipChoice = function() { selectUserType('visitor'); };
         window.changeLanguage = changeLanguage;
         window.showNotification = showNotification;
         window.calculateCommission = calculateCommission;
+        window.loadImages = loadImages;
         
         console.log('✅ نظام StudentStay جاهز للعمل مع جميع التعديلات!');
     </script>
 </body>
-                    </html>
+                                                                                                      </html>
