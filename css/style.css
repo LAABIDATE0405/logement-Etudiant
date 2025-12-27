@@ -320,6 +320,14 @@ body {
     color: transparent;
 }
 
+/* تحسين عرض الشعار */
+.logo-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -710,11 +718,16 @@ body {
     border-color: var(--primary);
 }
 
+/* تحسين عرض الصور في بطاقات العقارات */
 .property-image {
     height: 240px;
     background: linear-gradient(135deg, #667eea, #764ba2);
     position: relative;
     overflow: hidden;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f0f0f0; /* لون خلفية احتياطي إذا لم تظهر الصورة */
 }
 
 .property-image::before {
@@ -832,6 +845,29 @@ body {
     font-size: 1.1rem;
 }
 
+/* تحسين زر الحجز */
+.book-now-btn {
+    background: linear-gradient(135deg, #3a86ff, #5a96ff);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.book-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+    background: linear-gradient(135deg, #2a76ff, #4a86ff);
+}
+
 /* أزرار العقار */
 .property-buttons {
     display: flex;
@@ -839,29 +875,7 @@ body {
     margin-top: 20px;
 }
 
-.book-now-btn {
-    background: linear-gradient(135deg, var(--student), #5a6fff);
-    color: white;
-    border: none;
-    padding: 14px 25px;
-    border-radius: var(--radius);
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: var(--transition);
-    font-size: 1.05rem;
-    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
-    flex: 1;
-    justify-content: center;
-}
-
-.book-now-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
-    background: linear-gradient(135deg, #2a75ff, #4a86ff);
-}
+/* حذف الـ book-now-btn القديم من هنا لأنه تم استبداله أعلاه */
 
 .property-footer {
     display: flex;
@@ -1023,6 +1037,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* تحسين عرض الصور في منطقة رفع الملفات */
 .file-upload-area {
     border: 3px dashed #ddd;
     border-radius: var(--radius);
@@ -1071,6 +1086,60 @@ body {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+}
+
+/* تحسين عرض الصور في المعاينة */
+.file-upload-area img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: none; /* سيظهر عند رفع الصور */
+}
+
+.image-preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.image-preview {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(239, 35, 60, 0.9);
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.remove-image:hover {
+    background: var(--danger);
+    transform: scale(1.1);
 }
 
 .publish-btn {
@@ -1596,6 +1665,14 @@ body {
     color: var(--primary);
 }
 
+/* تحسين عرض الشعار في الفوتر */
+.footer-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
 .footer-logo h3 {
     font-size: 2rem;
     color: white;
@@ -1677,6 +1754,49 @@ body {
     font-size: 0.95rem;
     position: relative;
     z-index: 2;
+}
+
+/* ===== تحسين عرض الصور في عرض التفاصيل ===== */
+.property-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.main-image {
+    grid-row: span 2;
+    background-size: cover;
+    background-position: center;
+}
+
+.gallery-image {
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.02);
+}
+
+/* تحسين عرض الصور في القائمة الجانبية */
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.thumbnail:hover {
+    border-color: var(--primary);
+    transform: scale(1.05);
 }
 
 /* ===== زر العودة للأعلى ===== */
@@ -1782,6 +1902,32 @@ body {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+/* ===== تحسينات التأثيرات البصرية للصور ===== */
+.image-loading {
+    position: relative;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* تأثير التكبير عند المرور على الصور */
+.zoom-on-hover {
+    overflow: hidden;
+}
+
+.zoom-on-hover img {
+    transition: transform 0.5s ease;
+}
+
+.zoom-on-hover:hover img {
+    transform: scale(1.1);
 }
 
 /* ===== CLASSES DYNAMIQUES ===== */
@@ -1955,6 +2101,20 @@ button:active {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+    
+    /* تحسين استجابة الصور للجوال */
+    .property-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 150px);
+    }
+    
+    .main-image {
+        grid-row: span 1;
+    }
+    
+    .image-preview-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 480px) {
@@ -2001,6 +2161,14 @@ button:active {
     .commission-table th,
     .commission-table td {
         padding: 12px 15px;
+    }
+    
+    .image-preview-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-image {
+        height: 200px;
     }
 }
 
