@@ -413,8 +413,8 @@
             <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <!-- إضافة صورة الشعار من مجلدك - تصحيح المسار -->
-                    <img src="image/propriété/logo.jpeg" alt="StudentStay Logo" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>';">
+                    <img src="image/properties/logo.jpeg" alt="StudentStay Logo" 
+                         onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>'; console.log('❌ صورة الشعار غير موجودة:', this.src);">
                 </div>
                 <div class="logo-text">
                     <span class="logo-main">StudentStay</span>
@@ -516,7 +516,7 @@
                 <div class="properties-grid">
                     <!-- عقار 1 (أقل من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('image/propriété/ty1.jpeg');">
+                        <div class="property-image" data-image="image/properties/ty1.jpeg">
                             <span class="property-badge premium">مميز</span>
                         </div>
                         <div class="property-info">
@@ -551,7 +551,7 @@
                     
                     <!-- عقار 2 (أكثر من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('image/propriété/ty2.jpeg');">
+                        <div class="property-image" data-image="image/properties/ty2.jpeg">
                             <span class="property-badge discount">خصم 20%</span>
                         </div>
                         <div class="property-info">
@@ -586,7 +586,7 @@
                     
                     <!-- عقار 3 (أقل من 1500 درهم) -->
                     <div class="property-card">
-                        <div class="property-image" style="background-image: url('image/propriété/ty3.jpeg');">
+                        <div class="property-image" data-image="image/properties/ty3.jpeg">
                             <span class="property-badge new">جديد</span>
                         </div>
                         <div class="property-info">
@@ -931,8 +931,8 @@
                 <div class="footer-section">
                     <div class="footer-logo">
                         <!-- إضافة صورة الشعار من مجلدك - تصحيح المسار -->
-                        <img src="image/propriété/logo.jpeg" alt="StudentStay Logo" 
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>';">
+                        <img src="image/properties/logo.jpeg" alt="StudentStay Logo" 
+                             onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-home\'></i>'; console.log('❌ صورة الشعار غير موجودة:', this.src);">
                         <div>
                             <h3>StudentStay</h3>
                             <p>منصة سكن الطلاب</p>
@@ -1013,6 +1013,17 @@
             
             // التحقق من مسارات الصور
             checkImagePaths();
+            
+            // عرض معلومات الصور
+            console.log('📁 هيكل المجلد المتوقع:');
+            console.log('├── index.html');
+            console.log('├── css/');
+            console.log('├── js/');
+            console.log('└── image/properties/');
+            console.log('    ├── logo.jpeg');
+            console.log('    ├── ty1.jpeg');
+            console.log('    ├── ty2.jpeg');
+            console.log('    └── ty3.jpeg');
         });
         
         // 2. تهيئة صندوق الاختيار
@@ -1485,10 +1496,10 @@
             console.log('🔍 جاري التحقق من مسارات الصور...');
             
             const images = [
-                { element: 'logo', path: 'image/propriété/logo.jpeg' },
-                { element: 'property1', path: 'image/propriété/ty1.jpeg' },
-                { element: 'property2', path: 'image/propriété/ty2.jpeg' },
-                { element: 'property3', path: 'image/propriété/ty3.jpeg' }
+                { element: 'logo', path: 'image/properties/logo.jpeg' },
+                { element: 'property1', path: 'image/properties/ty1.jpeg' },
+                { element: 'property2', path: 'image/properties/ty2.jpeg' },
+                { element: 'property3', path: 'image/properties/ty3.jpeg' }
             ];
             
             images.forEach(img => {
@@ -1498,7 +1509,8 @@
                 };
                 testImage.onerror = function() {
                     console.log(`❌ الصورة غير موجودة: ${img.path}`);
-                    console.log(`📁 المسار المتوقع: ${window.location.origin}/${img.path}`);
+                    console.log(`📁 حاول هذا المسار: ./${img.path}`);
+                    console.log(`📁 أو هذا المسار: /${img.path}`);
                 };
                 testImage.src = img.path;
             });
@@ -1506,46 +1518,123 @@
         
         // 17. تحميل الصور من مجلدك
         function loadImages() {
-            console.log('🖼️ جاري تحميل الصور من مجلد image/propriété/...');
+            console.log('🖼️ جاري تحميل الصور من مجلد image/properties/...');
             
-            // إصلاح مسارات الصور
+            // محاولة تحميل الصور بطرق مختلفة
+            const imagePaths = [
+                // الطريقة 1: مسار مباشر
+                { path: 'image/properties/ty1.jpeg', alt: 'ty1.jpeg' },
+                { path: 'image/properties/ty2.jpeg', alt: 'ty2.jpeg' },
+                { path: 'image/properties/ty3.jpeg', alt: 'ty3.jpeg' },
+                
+                // الطريقة 2: مع نقطة في البداية
+                { path: './image/properties/ty1.jpeg', alt: './ty1.jpeg' },
+                { path: './image/properties/ty2.jpeg', alt: './ty2.jpeg' },
+                { path: './image/properties/ty3.jpeg', alt: './ty3.jpeg' },
+                
+                // الطريقة 3: مع شرطة مائلة في البداية
+                { path: '/image/properties/ty1.jpeg', alt: '/ty1.jpeg' },
+                { path: '/image/properties/ty2.jpeg', alt: '/ty2.jpeg' },
+                { path: '/image/properties/ty3.jpeg', alt: '/ty3.jpeg' }
+            ];
+            
             const propertyImages = document.querySelectorAll('.property-image');
             
-            propertyImages.forEach((img, index) => {
-                // إذا لم تظهر الصورة، حاول تحميلها بطرق مختلفة
-                if (!img.style.backgroundImage || img.style.backgroundImage === 'none') {
-                    const imageNames = [
-                        'ty1.jpeg',
-                        'ty2.jpeg', 
-                        'ty3.jpeg'
-                    ];
+            propertyImages.forEach((imgElement, index) => {
+                if (imgElement.hasAttribute('data-image')) {
+                    const customPath = imgElement.getAttribute('data-image');
+                    console.log(`🔄 محاولة تحميل من data-image: ${customPath}`);
+                    loadImageWithFallback(imgElement, customPath, index);
+                } else {
+                    // محاولة جميع المسارات الممكنة
+                    let imageLoaded = false;
                     
-                    if (index < imageNames.length) {
-                        const imagePath = `image/propriété/${imageNames[index]}`;
-                        console.log(`🔄 محاولة تحميل: ${imagePath}`);
-                        
-                        const testImage = new Image();
-                        testImage.onload = function() {
-                            img.style.backgroundImage = `url('${imagePath}')`;
-                            console.log(`✅ تم تحميل صورة: ${imagePath}`);
-                        };
-                        testImage.onerror = function() {
-                            console.log(`⚠️ لم يتم العثور على: ${imagePath}`);
-                            // استخدام بديل
+                    for (let i = index * 3; i < (index * 3) + 3 && i < imagePaths.length; i++) {
+                        if (!imageLoaded) {
+                            const testImage = new Image();
+                            const path = imagePaths[i].path;
+                            
+                            testImage.onload = function() {
+                                if (!imageLoaded) {
+                                    imgElement.style.backgroundImage = `url('${path}')`;
+                                    console.log(`✅ تم تحميل صورة ${index + 1}: ${path}`);
+                                    imageLoaded = true;
+                                }
+                            };
+                            
+                            testImage.src = path;
+                        }
+                    }
+                    
+                    // إذا لم تتحمّل أي صورة بعد 2 ثانية، استخدم بديل
+                    setTimeout(() => {
+                        if (!imageLoaded) {
+                            console.log(`⚠️ لم يتم العثور على صورة للعقار ${index + 1}، استخدام بديل`);
                             const backupImages = [
                                 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                                 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                                 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
                             ];
-                            img.style.backgroundImage = `url('${backupImages[index]}')`;
-                        };
-                        testImage.src = imagePath;
-                    }
+                            imgElement.style.backgroundImage = `url('${backupImages[index]}')`;
+                        }
+                    }, 2000);
                 }
             });
         }
         
-        // 18. إعداد معاينة الصور
+        // 18. دالة مساعدة لتحميل الصور مع fallback
+        function loadImageWithFallback(imgElement, path, index) {
+            const testImage = new Image();
+            
+            testImage.onload = function() {
+                imgElement.style.backgroundImage = `url('${path}')`;
+                console.log(`✅ تم تحميل صورة من data-image: ${path}`);
+            };
+            
+            testImage.onerror = function() {
+                console.log(`❌ فشل تحميل: ${path}`);
+                
+                // محاولة مسارات بديلة
+                const altPaths = [
+                    path,
+                    './' + path,
+                    '/' + path,
+                    `image/properties/ty${index + 1}.jpeg`,
+                    `./image/properties/ty${index + 1}.jpeg`,
+                    `/image/properties/ty${index + 1}.jpeg`
+                ];
+                
+                let loaded = false;
+                for (let altPath of altPaths) {
+                    if (!loaded) {
+                        const altTest = new Image();
+                        altTest.onload = function() {
+                            imgElement.style.backgroundImage = `url('${altPath}')`;
+                            console.log(`✅ تم تحميل باستخدام مسار بديل: ${altPath}`);
+                            loaded = true;
+                        };
+                        altTest.src = altPath;
+                    }
+                }
+                
+                // إذا فشل كل شيء، استخدم بديل من الإنترنت
+                setTimeout(() => {
+                    if (!loaded) {
+                        const backupImages = [
+                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                            'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                            'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+                        ];
+                        imgElement.style.backgroundImage = `url('${backupImages[index]}')`;
+                        console.log(`📡 استخدام صورة افتراضية للعقار ${index + 1}`);
+                    }
+                }, 3000);
+            };
+            
+            testImage.src = path;
+        }
+        
+        // 19. إعداد معاينة الصور
         function setupImagePreview() {
             const fileInputs = document.querySelectorAll('input[type="file"][accept*="image"]');
             
@@ -1593,7 +1682,7 @@
             });
         }
         
-        // 19. إزالة ملف من input
+        // 20. إزالة ملف من input
         function removeFileFromInput(input, indexToRemove) {
             const dt = new DataTransfer();
             const files = input.files;
@@ -1607,7 +1696,7 @@
             input.files = dt.files;
         }
         
-        // 20. تحسين أداء تحميل الصور
+        // 21. تحسين أداء تحميل الصور
         function optimizeImageLoading() {
             // إضافة lazy loading للصور خارج الشاشة
             const images = document.querySelectorAll('img:not([loading])');
@@ -1636,7 +1725,7 @@
             propertyImages.forEach(img => observer.observe(img));
         }
         
-        // 21. جعل الدوال متاحة عالمياً
+        // 22. جعل الدوال متاحة عالمياً
         window.selectUserType = selectUserType;
         window.skipChoice = function() { selectUserType('visitor'); };
         window.changeLanguage = changeLanguage;
@@ -1652,9 +1741,33 @@
             if (e.key === 'F12') {
                 e.preventDefault();
                 checkImagePaths();
-                showNotification('🔍 جاري التحقق من مسارات الصور... تحقق من الكونسول', 'info');
+                showNotification('🔍 جاري التحقق من مسارات الصور... تحقق من الكونسول (F12)', 'info');
             }
         });
+        
+        // إضافة زر لتحميل الصور يدوياً
+        setTimeout(() => {
+            const debugDiv = document.createElement('div');
+            debugDiv.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: #4361ee;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 10px;
+                cursor: pointer;
+                z-index: 9998;
+                font-size: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            `;
+            debugDiv.innerHTML = '🔄 إعادة تحميل الصور';
+            debugDiv.onclick = function() {
+                loadImages();
+                showNotification('🔄 جاري إعادة تحميل الصور...', 'info');
+            };
+            document.body.appendChild(debugDiv);
+        }, 3000);
     </script>
 </body>
-    </html>
+                </html>
